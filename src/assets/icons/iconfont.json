@@ -1,0 +1,51 @@
+{
+  "id": "2447702",
+  "name": "个人博客",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1393759",
+      "name": "search",
+      "font_class": "search1",
+      "unicode": "e71f",
+      "unicode_decimal": 59167
+    },
+    {
+      "icon_id": "348851",
+      "name": "tag",
+      "font_class": "tag",
+      "unicode": "ec33",
+      "unicode_decimal": 60467
+    },
+    {
+      "icon_id": "809937",
+      "name": "user",
+      "font_class": "icon-user",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "1185463",
+      "name": "menu",
+      "font_class": "menu",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "10166323",
+      "name": "home",
+      "font_class": "home",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "19991663",
+      "name": "Color palette-Filled",
+      "font_class": "Colorpalette-Filled",
+      "unicode": "e6b1",
+      "unicode_decimal": 59057
+    }
+  ]
+}
