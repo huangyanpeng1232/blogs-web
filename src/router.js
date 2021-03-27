@@ -4,13 +4,19 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 // 引入组件
-import Index from "./components/Index";
-
+import Index from "@/components/Index";
+import Home from "@/components/blogs/Home";
 
 const routes = [
     {
         path:"/",
-        component: Index
+        component: Index,
+        children:[
+            {
+                path:"/",
+                component: Home
+            }
+        ]
     }
 ]
 

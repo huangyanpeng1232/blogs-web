@@ -1,17 +1,24 @@
 <template>
   <div id="app">
-    <Index></Index>
+    <router-view></router-view>
+    <div id="backImg"></div>
   </div>
 </template>
 
 <script>
 
-import Index from "@/components/Index";
 export default {
-  name: 'App',
-  components: {Index}
+  name: 'App'
 }
 </script>
 
-<style>
+<style scoped>
+#backImg{
+  background: url("assets/images/index_back.svg") no-repeat scroll center center / cover;
+  width: 100%;
+  height: calc(100vh);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
 </style>

@@ -11,7 +11,7 @@
     "axios": "^0.21.1",
     "bootstrap3": "^3.3.5",
     "core-js": "^3.6.5",
-    "jquery": "^3.6.0",
+    "jquery": "^2.2.3",
     "jquery-ui": "^1.12.1",
     "mavon-editor": "^2.9.1",
     "vue": "^2.6.11",
@@ -29,11 +29,11 @@
   "eslintConfig": {
     "root": true,
     "env": {
-      "node": true
+      "node": true,
+      "jquery": true
     },
     "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
+      "plugin:vue/essential"
     ],
     "parserOptions": {
       "parser": "babel-eslint"

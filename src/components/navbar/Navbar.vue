@@ -23,7 +23,7 @@
             <input type="text" v-model="search.intext" @keyup="searchText()" @focus="search.focus = true;searchText()" @blur="search.focus = false;search.resultShow = false" class="search-input" >
           </div>
           <ul class="menu-search-result-ul" v-show="search.resultShow" >
-            <li v-for="result in search.result" :key="result">
+            <li v-for="result in search.result" :key="result.id">
               {{result.content}}
             </li>
           </ul>
@@ -44,7 +44,6 @@
 
 <script>
 
-import 'jquery-ui'
 export default {
   name: "Navbar",
   data(){
@@ -55,22 +54,22 @@ export default {
         resultShow:false,
         result:[
           {
-            id:'123',
+            id:'1',
             content:'Spring Boot',
             url:'/'
           },
           {
-            id:'456',
+            id:'2',
             content:'Mysql',
             url:'/'
           },
           {
-            id:'789',
+            id:'3',
             content:'Java 异常体系',
             url:'/'
           },
           {
-            id:'101',
+            id:'4',
             content:'Vue 为什么这么火',
             url:'/'
           }
@@ -78,7 +77,7 @@ export default {
       },
       menus:[
         {
-          id:'8',
+          id:'5',
           text:'个人博客',
           type:'title',
           icon:'icon-tag',
@@ -86,21 +85,21 @@ export default {
           childrenShow:false
         },
         {
-          id:'7',
+          id:'6',
           text:'时间线',
           type:'menu-btn',
-          icon:'icon-tag',
+          icon:'icon-icon-time',
           float:'right',
           childrenShow:false
         },{
-          id:'6',
+          id:'7',
           text:'标签',
           type:'menu-btn',
           icon:'icon-tag',
           float:'right',
           childrenShow:false
         },{
-          id:'2',
+          id:'8',
           text:'分类',
           type:'menu-btn',
           icon:'icon-menu',
@@ -108,22 +107,22 @@ export default {
           childrenShow:false,
           children:[
             {
-              id:'3',
+              id:'9',
               type:'menu-btn',
               text:'Mysql'
             },{
-              id:'4',
+              id:'10',
               type:'menu-btn',
               text:'Redis'
             },{
-              id:'5',
+              id:'11',
               type:'menu-btn',
               text:'Spring Boot'
             }
           ]
         },
         {
-          id:'1',
+          id:'12',
           text:'首页',
           type:'menu-btn',
           icon:'icon-home',
@@ -131,7 +130,7 @@ export default {
           childrenShow:false
         },
         {
-          id:'0',
+          id:'13',
           type:'menu-search',
           float:'right',
           childrenShow:false
@@ -161,6 +160,11 @@ export default {
 
 <style scoped>
 .navbar-div{
+  position: fixed;
+  top:0px;
+  z-index: 2;
+  width: 100%;
+  background-color: white;
   box-shadow: 0 1px 8px 0 rgba(0,0,0,0.1);
 }
 .navbar-div:after {
@@ -179,13 +183,13 @@ export default {
   margin: 0px 5px;
 }
 .menu-btn{
-  color: #ff9722;
+  color: #4fbdff;
 }
 .menu-btn:hover{
-  color: #e08112;
+  color: #3dafee;
 }
 .menu-btn:active{
-  color: #cd6d05;
+  color: #2196d5;
 }
 .iconfont{
   margin-right: 5px;
@@ -222,7 +226,7 @@ export default {
 }
 .title{
   margin: 0px;
-  color: #222222;
+  color: #333;
   font-weight: bold;
   font-size: 19px;
   position: relative;
@@ -230,7 +234,7 @@ export default {
 }
 .icon-Colorpalette-Filled{
   font-size: 20px;
-  color: #666;
+  color: #4fbdff;
   padding-top: 10px;
 }
 .menu-search,.menu-btn{
@@ -245,7 +249,7 @@ export default {
 .menu-btn-down{
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-top: 6px solid #ff8f12;
+  border-top: 6px solid #4fbdff;
   border-bottom: 0;
   position: relative;
   top: 10px;
@@ -284,5 +288,4 @@ export default {
 .menu-search-result-ul>li:hover{
   background-color: #efefef;
 }
-
 </style>
