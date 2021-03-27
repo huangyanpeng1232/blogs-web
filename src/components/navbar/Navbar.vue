@@ -19,9 +19,14 @@
         </template>
         <template v-if="menu.type == 'menu-search'">
           <div class="search-div" :class="{searchFocus:search.focus,searchBlur:!search.focus}">
-            <span class="iconfont icon-search" ></span>
-            <input type="text" @focus="search.focus = true" @blur="search.focus = false" class="search-input" >
+            <span class="iconfont icon-search"></span>
+            <input type="text" v-model="search.intext" @keyup="searchText()" @focus="search.focus = true;searchText()" @blur="search.focus = false;search.resultShow = false" class="search-input" >
           </div>
+          <ul class="menu-search-result-ul" v-show="search.resultShow" >
+            <li v-for="result in search.result" :key="result">
+              {{result.content}}
+            </li>
+          </ul>
         </template>
         <template v-if="menu.type == 'title'">
           <span class="title" >
@@ -45,7 +50,31 @@ export default {
   data(){
     return {
       search:{
-        focus:false
+        focus:false,
+        intext:'',
+        resultShow:false,
+        result:[
+          {
+            id:'123',
+            content:'Spring Boot',
+            url:'/'
+          },
+          {
+            id:'456',
+            content:'Mysql',
+            url:'/'
+          },
+          {
+            id:'789',
+            content:'Java 异常体系',
+            url:'/'
+          },
+          {
+            id:'101',
+            content:'Vue 为什么这么火',
+            url:'/'
+          }
+        ]
       },
       menus:[
         {
@@ -107,12 +136,25 @@ export default {
           float:'right',
           childrenShow:false
         }
-      ]
+      ],
+      searchWait:null
 
     }
   },
   methods:{
-
+    searchText:function(){
+      if(this.searchWait != null){
+        window.clearTimeout(this.searchWait)
+      }
+      if(this.search.intext != ''){
+        let this_ = this;
+        this.searchWait = setTimeout(function(){
+          this_.search.resultShow = true
+        },250)
+      }else{
+        this.search.resultShow = false
+      }
+    }
   }
 }
 </script>
@@ -131,17 +173,19 @@ export default {
   width: 100%;
   padding: 10px;
 }
-.menu-ul li{
+.menu-ul>li{
   list-style: none;
   cursor: pointer;
-  color: #777;
   margin: 0px 5px;
 }
+.menu-btn{
+  color: #ff9722;
+}
 .menu-btn:hover{
-  color: #222;
+  color: #e08112;
 }
 .menu-btn:active{
-  color: #111;
+  color: #cd6d05;
 }
 .iconfont{
   margin-right: 5px;
@@ -156,6 +200,7 @@ export default {
   border:none;
   outline:medium;
   font-size: 16px;
+  color: #666;
 }
 .searchFocus{
   animation-name: search-focus;
@@ -169,10 +214,10 @@ export default {
 }
 @keyframes search-focus {
   from {border-color: #eaecef;}
-  to {border-color: #888;}
+  to {border-color: #aaa;}
 }
 @keyframes search-blur {
-  from {border-color: #888;}
+  from {border-color: #aaa;}
   to {border-color: #eaecef;}
 }
 .title{
@@ -191,32 +236,53 @@ export default {
 .menu-search,.menu-btn{
   padding: 10px;
 }
+.menu-search{
+  color: #6a6a6a;
+}
 .menu-colors{
   padding-top: 10px;
 }
 .menu-btn-down{
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-top: 6px solid #777;
+  border-top: 6px solid #ff8f12;
   border-bottom: 0;
   position: relative;
   top: 10px;
   left: 5px;
 }
-.menu-children-ul li{
+.menu-children-ul>li{
   list-style: none;
   padding: 10px;
   margin: 0px;
 }
-.menu-children-ul li:hover{
+.menu-children-ul>li:hover{
   background-color: #f5f5f5;
-  color: #00c4ff;
+
 }
-.menu-children-ul{
+.menu-children-ul,.menu-search-result-ul{
   position:absolute;
   padding-left: 0px;
   background-color: #fff;
-  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.2);
   border-radius: 5px;
 }
+.menu-children-ul{
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.2);
+}
+.menu-search-result-ul{
+  width: 300px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  padding: 6px;
+}
+.menu-search-result-ul>li{
+  list-style: none;
+  padding: 8px;
+  border-radius: 3px;
+  color: #555;
+}
+.menu-search-result-ul>li:hover{
+  background-color: #efefef;
+}
+
 </style>
