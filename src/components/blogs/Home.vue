@@ -8,6 +8,7 @@
         <div class="col-md-3">
           <Calendar></Calendar>
           <Classify></Classify>
+          <Tag></Tag>
         </div>
       </div>
     </div>
@@ -19,9 +20,10 @@
 import BlogList from "@/components/blogs/BlogList";
 import Calendar from "@/components/plugins/Calendar";
 import Classify from "@/components/plugins/Classify";
+import Tag from "@/components/plugins/Tag";
 export default {
   name: "Home",
-  components: {Classify, Calendar, BlogList},
+  components: {Tag, Classify, Calendar, BlogList},
 }
 </script>
 

@@ -97,16 +97,16 @@ export default {
 .classify-ul li{
   list-style: none;
   margin-top: 10px;
-  padding: 10px;
+  padding: 8px 10px;
   border-radius: 4px;
   box-shadow: 0px 0px 3px rgba(50, 50, 50, 0.3);
   margin-left: 4px;
   margin-right: 4px;
-  transition: all 0.2s ease 0s;
+  transition: all 0.15s ease 0s;
   cursor: pointer;
 }
 .classify-ul li:hover{
-  transform: scale(1.05)
+  transform: scale(1.04)
 }
 
 .classify-text{
@@ -120,7 +120,7 @@ export default {
   color: white;
   padding: 5px;
   cursor: pointer;
-  min-width: 30px;
+  min-width: 40px;
   text-align: center;
 }
 .classify-num:hover{

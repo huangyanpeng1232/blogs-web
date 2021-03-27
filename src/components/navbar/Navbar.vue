@@ -183,13 +183,16 @@ export default {
   margin: 0px 5px;
 }
 .menu-btn{
-  color: #4fbdff;
+  color: #19a9ff;
+  font-size: 15px;
+  transition: all 0.1s ease 0s;
 }
 .menu-btn:hover{
-  color: #3dafee;
+  color: #1692d7;
+  transform: scale(1.1);
 }
 .menu-btn:active{
-  color: #2196d5;
+  color: #1080bb;
 }
 .iconfont{
   margin-right: 5px;
@@ -199,13 +202,19 @@ export default {
   padding: 4px 8px;
   border-radius: 4px;
   margin-top: -5px;
+  transition: all 0.15s ease 0s;
+}
+.search-div:hover{
+  transform: scale(1.05);
 }
 .search-input{
   border:none;
   outline:medium;
   font-size: 16px;
   color: #666;
+
 }
+
 .searchFocus{
   animation-name: search-focus;
   animation-duration: 0.2s;
@@ -252,7 +261,7 @@ export default {
   border-top: 6px solid #4fbdff;
   border-bottom: 0;
   position: relative;
-  top: 10px;
+  top: 13px;
   left: 5px;
 }
 .menu-children-ul>li{
@@ -272,6 +281,7 @@ export default {
 }
 .menu-children-ul{
   box-shadow: 0 1px 4px 0 rgba(0,0,0,0.2);
+  min-width: 140px;
 }
 .menu-search-result-ul{
   width: 300px;
@@ -281,11 +291,13 @@ export default {
 }
 .menu-search-result-ul>li{
   list-style: none;
-  padding: 8px;
+  padding: 7px;
   border-radius: 3px;
   color: #555;
+  font-size: 13px;
 }
 .menu-search-result-ul>li:hover{
   background-color: #efefef;
+  color: #33b4ff;
 }
 </style>

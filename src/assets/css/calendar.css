@@ -16,11 +16,11 @@ ul, li { list-style: none; }
   position: relative;
   height: 30px;
   line-height: 30px;
-  padding: 10px 0;
 }
 .calendar-title a.title {
   display: inline-block;
   font-size: 26px;
+  cursor: default;
   text-indent: 10px;
 }
 #backToday {
@@ -39,12 +39,12 @@ ul, li { list-style: none; }
 }
 .calendar-title .arrow {
   position: absolute;
-  top: 10px;
-  right: 0;
+  top: -2px;
+  right: 10px;
   width: 50px;
 }
 .calendar-title .arrow span {
-  color: #ddd;
+  color: #ccc;
   font-size: 26px;
   cursor: pointer;
 
@@ -55,7 +55,7 @@ ul, li { list-style: none; }
   user-select: none;
 }
 .calendar-title .arrow span:hover {
-  color: #888;
+  color: #666;
 }
 .calendar-title .arrow-prev {
   float: left;
@@ -67,9 +67,7 @@ ul, li { list-style: none; }
 .calendar-date {
   overflow: hidden;
 }
-.calendar-week{
-  margin-top: 15px;
-}
+
 .calendar-week .item,
 .calendar-date .item {
   float: left;
@@ -82,11 +80,12 @@ ul, li { list-style: none; }
   padding-bottom: 6px;
   border-bottom: 1px solid rgb(100, 204, 255);
   font-weight: bold;
+  cursor: default;
   font-size: 16px;
 }
 .calendar-date {}
 .calendar-date .item {
-  border-radius: 50%;
+  border-radius: 4px;
   cursor: pointer;
   font-size: 13px;
 }
@@ -101,6 +100,7 @@ ul, li { list-style: none; }
 .calendar-date .item-curDay,
 .calendar-date .item-curDay:hover {
   color: #fff;
+  font-size: 16px;
   background-color: rgb(100, 204, 255);
 }
 .calendar-date .item-selected,

@@ -1,26 +1,26 @@
 <template>
-<div id="BlogList">
-  <ul class="blogs-ul">
-    <li v-for="item in list" :key="item.id">
-      <div class="title">
-        <span>{{ item.title }}</span>
-      </div>
-      <hr class="title-hr">
-      <div class="content">
-        <span>{{ item.description }}</span>
-      </div>
-      <hr class="content-hr">
-      <div class="info">
-              <span class="iconfont icon-icon-time">
-                <span>{{ item.time | dateTimeFormat }}</span>
-              </span>
-        <span class="iconfont icon-tag">
-                <span>{{ item.tag }}</span>
-              </span>
-      </div>
-    </li>
-  </ul>
-</div>
+  <div id="BlogList">
+    <ul class="blogs-ul">
+      <li v-for="item in list" :key="item.id">
+        <div class="title">
+          <span>{{ item.title }}</span>
+        </div>
+        <hr class="title-hr">
+        <div class="content">
+          <span>{{ item.description }}</span>
+        </div>
+        <hr class="content-hr">
+        <div class="info">
+          <span class="iconfont icon-icon-time">
+            <span>{{ item.time | dateTimeFormat }}</span>
+          </span>
+          <span class="iconfont icon-tag">
+            <span>{{ item.tag }}</span>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -80,10 +80,12 @@ export default {
   padding: 15px;
   border-radius: 8px;
   background-color: white;
-  border: 1px solid rgba(0,0,0,0);
+  border: 1px solid rgba(0, 0, 0, 0);
+  transition: all 0.1s ease 0s;
 }
 
 .blogs-ul > li:hover {
+  transform: scale(1.01);
   animation-name: mouse-in-blog;
   animation-duration: 0.6s;
   animation-fill-mode: forwards
@@ -92,16 +94,16 @@ export default {
 @keyframes mouse-in-blog {
   from {
     box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(0,0,0,0);
+    border: 1px solid rgba(0, 0, 0, 0);
   }
   to {
     box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(10,10,10,0.2);
+    border: 1px solid rgba(10, 10, 10, 0.2);
   }
 }
 
 .title {
-  font-size: 20px;
+  font-size: 19px;
   font-weight: bold;
   margin: 5px;
   color: #666;
@@ -109,7 +111,7 @@ export default {
 }
 
 .content {
-  font-size: 17px;
+  font-size: 16px;
   color: #777;
   text-indent: 25px;
 
@@ -126,13 +128,14 @@ export default {
 }
 
 .info > span {
-  margin-left: 15px;
-  margin-right: 15px;
+  margin-left: 17px;
+  margin-right: 17px;
 }
-
-.info > span > span {
-  margin-left: 5px;
+.info > span>span{
   font-size: 12px;
+  position: relative;
+  top: -2px;
+  margin-left: 5px;
 }
 
 .content-hr {
