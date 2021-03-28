@@ -10,8 +10,10 @@ import '@/assets/icons/iconfont.css'
 
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
+
 Vue.use(mavonEditor)
 
+axios.defaults.baseURL='http://127.0.0.1:8080'
 Vue.prototype.$axios = axios
 
 Vue.config.productionTip = false

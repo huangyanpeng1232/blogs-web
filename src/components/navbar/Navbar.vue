@@ -181,9 +181,9 @@ export default {
 .navbar-div{
   position: fixed;
   top:0px;
-  z-index: 2;
   width: 100%;
   background-color: white;
+  z-index: 1;
   box-shadow: 0 1px 8px 0 rgba(0,0,0,0.1);
 }
 .navbar-div:after {
@@ -202,15 +202,17 @@ export default {
   margin: 0px 5px;
 }
 .menu-btn{
-  color: #19a9ff;
   font-size: 15px;
   transition: all 0.1s ease 0s;
 }
-.menu-btn:hover{
+.menu-btn div a{
+  color: #19a9ff;
+}
+.menu-btn div a:hover{
   color: #1692d7;
   transform: scale(1.1);
 }
-.menu-btn:active{
+.menu-btn div a:active{
   color: #1080bb;
 }
 .iconfont{

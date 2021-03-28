@@ -6,8 +6,8 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">好的</button>
         </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+      </div>
+    </div>
   </div>
 </template>
 
@@ -30,9 +30,7 @@ export default {
 </script>
 
 <style scoped>
-#myModal{
-  z-index: 1600;
-}
+
 .modal-dialog{
   width: 400px;
   margin-top: 50px;

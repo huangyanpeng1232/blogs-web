@@ -1,7 +1,7 @@
 <template>
   <div class="Index">
     <Navbar></Navbar>
-    <div style="margin-top: 80px;z-index: 1;position: sticky;">
+    <div style="margin-top: 80px;">
       <router-view></router-view>
     </div>
   </div>

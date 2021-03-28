@@ -2,7 +2,7 @@
   <div id="BlogList">
     <ul class="blogs-ul">
       <li v-for="item in list" :key="item.id">
-        <router-link  to="/blog">
+        <router-link :to="'/blog/'+item.id">
           <div class="title">
             <span>{{ item.title }}</span>
           </div>
@@ -14,7 +14,7 @@
         <hr class="content-hr">
         <div class="info">
           <span class="iconfont icon-icon-time">
-            <span>{{ item.time | dateTimeFormat }}</span>
+            <span>{{ item.insert_time | dateTimeFormat }}</span>
           </span>
           <span class="iconfont icon-tag">
             <span>{{ item.tag }}</span>
@@ -22,53 +22,62 @@
         </div>
       </li>
     </ul>
+    <Alert ref="alert"></Alert>
   </div>
 </template>
 
 <script>
+import Alert from "@/components/plugins/Alert";
+
 export default {
   name: "BlogList",
+  components: {Alert},
+  mounted() {
+    window.addEventListener('scroll',this.handleScroll,true)
+  },
+  methods:{
+    handleScroll(){
+      if(this.loading){
+        return;
+      }
+      let scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+      let windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+      let scrollHeight = document.documentElement.scrollHeight||document.body.scrollHeight;
+      if(scrollTop + windowHeight > scrollHeight - 500){
+        this.loading = true;
+        console.log(this.loading)
+        this.loadData();
+      }
+    },
+    loadData(){
+      this.index++;
+      this.$axios.post('/blogs/getBlogs',{'index':this.index}).then(response => {
+        if(response.status == 200 && response.data.status == 'succeed'){
+          for(let i = 0;i < response.data.blogs.length;i++){
+            this.list.push(response.data.blogs[i])
+          }
+        }else {
+          this.$refs.alert.alert(response.data.status);
+        }
+        if(response.data.blogs.length == response.data.pageSize){
+          this.loading = false;
+        }
+      }).catch(e =>{
+        this.$refs.alert.alert('系统错误:'+e);
+      })
+    }
+  },
+  created() {
+    if(this.loading){
+      return;
+    }
+    this.loadData();
+  },
   data() {
     return {
-      list: [
-        {
-          id: '10',
-          title: 'Spring Boot',
-          url:'',
-          description: 'Spring Boot是由Pivotal团队提供的全新框架，其设计目的是用来简化新Spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置',
-          time: new Date('2020-03-27 10:54:15'),
-          tag: '后端框架'
-        }, {
-          id: '11',
-          title: 'Mysql',
-          url:'',
-          description: 'MySQL是一个关系型数据库管理系统，由瑞典MySQL AB 公司开发，属于 Oracle 旗下产品。MySQL 是最流行的关系型数据库管理系统之一',
-          time: new Date('2020-01-23 10:24:15'),
-          tag: '数据库'
-        }, {
-          id: '12',
-          title: 'Redis',
-          url:'',
-          description: 'Redis（Remote Dictionary Server )，即远程字典服务，是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库',
-          time: new Date('2021-01-17 3:53:15'),
-          tag: '缓存'
-        },
-        {
-          id: '13',
-          title: 'Mybatis',
-          url:'',
-          description: 'MyBatis 本是apache的一个开源项目iBatis, 2010年这个项目由apache software foundation 迁移到了google code，并且改名为MyBatis ',
-          time: new Date('2019-01-27 10:52:15'),
-          tag: '持久层框架'
-        }, {
-          id: '14',
-          url:'',
-          title: 'JDK 与JRE 的区别',
-          description: 'JRE主要包含：java类库的class文件(都在lib目录下打包成了jar)和虚拟机(jvm.dll)；JDK主要包含：java类库的 class文件(都在lib目录下打包成了jar)并自带一个JRE',
-          time: new Date('2020-2-5 17:24:05'),
-          tag: 'Java 基础'
-        }
-      ]
+      index:0,
+      loading:false,
+      list: []
     }
   }
 }

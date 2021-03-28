@@ -19,14 +19,18 @@ const routes = [
                 component: Home
             },
             {
-                path:"/blog",
+                path:"/blog/:blogId",
                 component: BlogIndex
+            },
+            {
+                path:"/edit/:blogId",
+                component: EditBlog
+            },
+            {
+                path:"/edit",
+                component: EditBlog
             }
         ]
-    },
-    {
-        path:"/edit",
-        component: EditBlog
     }
 ]
 

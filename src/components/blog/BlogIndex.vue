@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-9">
-      <BlogInfo></BlogInfo>
+      <BlogInfo :blogInfo="blog"></BlogInfo>
     </div>
     <div class="col-md-3">
       <Calendar></Calendar>
@@ -22,7 +22,24 @@ import Tag from "@/components/plugins/Tag";
 import BlogInfo from "@/components/blog/BlogInfo";
 export default {
   name: "BlogIndex",
-  components: {BlogInfo, Tag, Classify, Calendar}
+  components: {BlogInfo, Tag, Classify, Calendar},
+  data(){
+    return{
+      blogId:this.$route.params.blogId,
+      blog:null
+    }
+  },
+  created: function(){
+    this.$axios.post('/blogs/getBlogById',{'id':this.blogId}).then(response => {
+      if(response.status == 200 && response.data.status == 'succeed'){
+        this.blog = response.data.blog;
+      }else {
+        this.$refs.alert.alert(response.data.status);
+      }
+    }).catch(e =>{
+      this.$refs.alert.alert('系统错误:'+e);
+    })
+  }
 }
 </script>
 
