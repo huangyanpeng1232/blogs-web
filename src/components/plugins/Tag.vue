@@ -2,7 +2,7 @@
 <div id="Tag">
   <div class="tag">
     <span class="iconfont icon-tag">
-      <span style="padding-left: 7px;font-size: 16px">分类</span>
+      <span style="padding-left: 7px;font-size: 16px">标签</span>
     </span>
     <hr style="margin-top: 8px;margin-bottom: 5px">
     <ul class="tag-ul">

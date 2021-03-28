@@ -8,6 +8,10 @@ import axios from 'axios'
 import router from './router.js'
 import '@/assets/icons/iconfont.css'
 
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+Vue.use(mavonEditor)
+
 Vue.prototype.$axios = axios
 
 Vue.config.productionTip = false

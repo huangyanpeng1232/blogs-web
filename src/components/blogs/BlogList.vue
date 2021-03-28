@@ -2,9 +2,11 @@
   <div id="BlogList">
     <ul class="blogs-ul">
       <li v-for="item in list" :key="item.id">
-        <div class="title">
-          <span>{{ item.title }}</span>
-        </div>
+        <router-link  to="/blog">
+          <div class="title">
+            <span>{{ item.title }}</span>
+          </div>
+        </router-link>
         <hr class="title-hr">
         <div class="content">
           <span>{{ item.description }}</span>
@@ -32,18 +34,21 @@ export default {
         {
           id: '10',
           title: 'Spring Boot',
+          url:'',
           description: 'Spring Boot是由Pivotal团队提供的全新框架，其设计目的是用来简化新Spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置',
           time: new Date('2020-03-27 10:54:15'),
           tag: '后端框架'
         }, {
           id: '11',
           title: 'Mysql',
+          url:'',
           description: 'MySQL是一个关系型数据库管理系统，由瑞典MySQL AB 公司开发，属于 Oracle 旗下产品。MySQL 是最流行的关系型数据库管理系统之一',
           time: new Date('2020-01-23 10:24:15'),
           tag: '数据库'
         }, {
           id: '12',
           title: 'Redis',
+          url:'',
           description: 'Redis（Remote Dictionary Server )，即远程字典服务，是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库',
           time: new Date('2021-01-17 3:53:15'),
           tag: '缓存'
@@ -51,11 +56,13 @@ export default {
         {
           id: '13',
           title: 'Mybatis',
+          url:'',
           description: 'MyBatis 本是apache的一个开源项目iBatis, 2010年这个项目由apache software foundation 迁移到了google code，并且改名为MyBatis ',
           time: new Date('2019-01-27 10:52:15'),
           tag: '持久层框架'
         }, {
           id: '14',
+          url:'',
           title: 'JDK 与JRE 的区别',
           description: 'JRE主要包含：java类库的class文件(都在lib目录下打包成了jar)和虚拟机(jvm.dll)；JDK主要包含：java类库的 class文件(都在lib目录下打包成了jar)并自带一个JRE',
           time: new Date('2020-2-5 17:24:05'),
@@ -75,7 +82,7 @@ export default {
 
 .blogs-ul > li {
   list-style: none;
-  margin-top: 20px;
+  margin-bottom: 20px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   padding: 15px;
   border-radius: 8px;

@@ -1,0 +1,79 @@
+<template>
+<div id="BlogInfo">
+  <div class="blogInfo">
+    <div class="title">{{blogInfo.title}}</div>
+    <div class="info">
+      <span class="iconfont icon-icon-time">
+        <span>{{ blogInfo.time | dateTimeFormat }}</span>
+      </span>
+      <span class="iconfont icon-tag">
+        <span>{{ blogInfo.tag }}</span>
+      </span>
+      <span class="iconfont icon-menu">
+        <span>{{ blogInfo.classify }}</span>
+      </span>
+      <router-link to="/edit">
+        <span class="iconfont icon-edit edit" style="float: right;" title="编辑文章"></span>
+      </router-link>
+    </div>
+    <hr>
+    <div v-html="blogInfo.content"></div>
+  </div>
+</div>
+</template>
+
+<script>
+export default {
+  name: "BlogInfo",
+  data(){
+    return{
+      blogInfo:{
+        id:'',
+        title:'Spring Boot 有什么优势？',
+        time:new Date(),
+        classify:'Java 基础',
+        tag:'基础知识',
+        content:'<div>11111</div>'
+      }
+    }
+  }
+}
+</script>
+
+<style scoped>
+.blogInfo{
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  border-radius: 8px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0);
+  min-height: 500px;
+}
+.title{
+  font-size: 25px;
+  color: #666;
+  font-weight: bold;
+  text-align: center;
+  cursor: default;
+}
+.info{
+  margin-top: 15px;
+  text-align: center;
+  cursor: default;
+}
+.info>span{
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.info>span>span{
+  margin-left: 10px;
+}
+.edit{
+  cursor: pointer;
+  transition: all 0.2s ease 0s;
+}
+.edit:hover{
+  transform: scale(1.2);
+  color: #333;
+}
+</style>

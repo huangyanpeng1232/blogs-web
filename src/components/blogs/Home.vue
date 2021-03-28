@@ -28,13 +28,5 @@ export default {
 </script>
 
 <style scoped>
-#Home {
-  margin-top: 60px;
-}
-
-#Home .container {
-  z-index: 1;
-  position: sticky;
-}
 
 </style>

@@ -5,15 +5,17 @@
       <li v-for="menu in menus" :style="{'float':menu.float}" :class="[menu.type]" :key="menu.id">
         <template v-if="menu.type == 'menu-btn'">
           <div @mouseover="menu.childrenShow = true" @mouseout="menu.childrenShow = false">
-            <span class="iconfont" :class="[menu.icon]"></span>
-            <span>{{menu.text}}</span>
+            <router-link :to="menu.url">
+              <span class="iconfont" :class="[menu.icon]"></span>
+              <span>{{menu.text}}</span>
 
-            <span v-if="menu.children != undefined && menu.children.length > 0" class="menu-btn-down"></span>
-            <ul class="menu-children-ul" v-show="menu.childrenShow" v-if="menu.children != undefined && menu.children.length > 0">
-              <li v-for="item in menu.children" :key="item.id">
-                {{item.text}}
-              </li>
-            </ul>
+              <span v-if="menu.children != undefined && menu.children.length > 0" class="menu-btn-down"></span>
+              <ul class="menu-children-ul" v-show="menu.childrenShow" v-if="menu.children != undefined && menu.children.length > 0">
+                <li v-for="item in menu.children" :key="item.id">
+                  {{item.text}}
+                </li>
+              </ul>
+            </router-link>
           </div>
 
         </template>
@@ -78,14 +80,24 @@ export default {
       menus:[
         {
           id:'5',
+          url:'/',
           text:'个人博客',
           type:'title',
           icon:'icon-tag',
           float:'left',
           childrenShow:false
+        },{
+          id:'100',
+          url:'/edit',
+          text:'创作',
+          type:'menu-btn',
+          icon:'icon-edit',
+          float:'right',
+          childrenShow:false
         },
         {
           id:'6',
+          url:'/',
           text:'时间线',
           type:'menu-btn',
           icon:'icon-icon-time',
@@ -93,6 +105,7 @@ export default {
           childrenShow:false
         },{
           id:'7',
+          url:'/',
           text:'标签',
           type:'menu-btn',
           icon:'icon-tag',
@@ -100,6 +113,7 @@ export default {
           childrenShow:false
         },{
           id:'8',
+          url:'/',
           text:'分类',
           type:'menu-btn',
           icon:'icon-menu',
@@ -108,14 +122,17 @@ export default {
           children:[
             {
               id:'9',
+              url:'/',
               type:'menu-btn',
               text:'Mysql'
             },{
               id:'10',
+              url:'/',
               type:'menu-btn',
               text:'Redis'
             },{
               id:'11',
+              url:'/',
               type:'menu-btn',
               text:'Spring Boot'
             }
@@ -123,6 +140,7 @@ export default {
         },
         {
           id:'12',
+          url:'/',
           text:'首页',
           type:'menu-btn',
           icon:'icon-home',
@@ -131,6 +149,7 @@ export default {
         },
         {
           id:'13',
+          url:'/',
           type:'menu-search',
           float:'right',
           childrenShow:false

@@ -6,6 +6,8 @@ Vue.use(VueRouter);
 // 引入组件
 import Index from "@/components/Index";
 import Home from "@/components/blogs/Home";
+import BlogIndex from "@/components/blog/BlogIndex";
+import EditBlog from "@/components/blog/EditBlog";
 
 const routes = [
     {
@@ -15,8 +17,16 @@ const routes = [
             {
                 path:"/",
                 component: Home
+            },
+            {
+                path:"/blog",
+                component: BlogIndex
             }
         ]
+    },
+    {
+        path:"/edit",
+        component: EditBlog
     }
 ]
 
