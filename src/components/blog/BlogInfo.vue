@@ -17,7 +17,7 @@
       </router-link>
     </div>
     <hr>
-    <div class="content" v-html="blogInfo.content"></div>
+    <div class="content " v-html="blogInfo.content"></div>
   </div>
 </div>
 </template>
@@ -39,7 +39,8 @@ export default {
 </script>
 
 <style scoped>
-
+@import "../../assets/css/github-markdown.min.css";
+@import "../../assets/css/androidstudio.min.css";
 .blogInfo{
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   padding: 15px;
