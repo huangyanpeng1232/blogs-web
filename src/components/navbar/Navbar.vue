@@ -9,47 +9,52 @@
             </span>
         </router-link>
       </li>
-      <li style="float:right;" class="menu-btn">
+      <li style="float:right;" class="menu-btn color2">
           <router-link :to="{name:'add'}">
             <span class="iconfont icon-edit"></span>
             <span>创作</span>
           </router-link>
       </li>
-      <li style="float:right;" class="menu-btn">
+      <li style="float:right;" class="menu-btn color2 color1">
         <div >
           <span class="iconfont icon-icon-time"></span>
           <span>时间线</span>
         </div>
       </li>
-      <li style="float:right;" class="menu-btn" @mouseenter="tagListShow = true" @mouseleave="tagListShow = false">
+      <li style="float:right;" class="menu-btn color2 color1" @mouseenter="tagListShow = true" @mouseleave="tagListShow = false">
         <div>
           <span class="iconfont icon-tag"></span>
           <span>标签</span>
           <span v-if="tagList != undefined && tagList.length > 0" class="menu-btn-down"></span>
         </div>
         <ul class="menu-children-ul" v-show="tagListShow">
-          <li v-for="item in tagList" :key="item.id">
-            <router-link :to="{ name: 'tag', params: { tagId: item.id}}">
-              {{item.name}}
+          <template v-for="item in tagList">
+            <router-link :key="item.id" :to="{ name: 'tag', params: { tagId: item.id}}">
+              <li class="color2">
+                  {{item.name}}
+              </li>
             </router-link>
-          </li>
+          </template>
         </ul>
       </li>
-      <li style="float:right;" class="menu-btn" @mouseenter="classifyListShow = true" @mouseleave="classifyListShow = false">
+      <li style="float:right;" class="menu-btn color2 color1" @mouseenter="classifyListShow = true" @mouseleave="classifyListShow = false">
         <div>
           <span class="iconfont icon-menu"></span>
           <span>分类</span>
           <span v-if="classifyList != undefined && classifyList.length > 0" class="menu-btn-down"></span>
         </div>
         <ul class="menu-children-ul" v-show="classifyListShow">
-          <li v-for="item in classifyList" :key="item.id">
-            <router-link :to="{ name: 'classify', params: { classifyId: item.id}}">
-              {{item.name}}
+
+          <template v-for="item in classifyList" >
+            <router-link :key="item.id" :to="{ name: 'classify', params: { classifyId: item.id}}">
+            <li class="color2">
+                {{item.name}}
+            </li>
             </router-link>
-          </li>
+          </template>
         </ul>
       </li>
-      <li style="float:right;" class="menu-btn">
+      <li style="float:right;" class="menu-btn color2">
         <router-link :to="'/'">
           <span class="iconfont icon-home"></span>
           <span>首页</span>
@@ -184,22 +189,17 @@ export default {
 }
 .menu-btn{
   font-size: 16px;
-  color: rgb(255, 204, 0);
   transition: all 0.1s ease 0s;
 }
 .menu-btn a{
-  color: rgb(255, 204, 0);
   text-decoration:none;
 }
 .menu-btn:hover{
   background-color: #eee;
   border-radius: 6px;
   transform: scale(1.12);
-  color: rgb(255, 183, 0);
 }
-.menu-btn a:hover{
-  color: rgb(255, 183, 0);
-}
+
 .iconfont{
   margin-right: 5px;
 }
@@ -264,13 +264,13 @@ export default {
   top: 13px;
   left: 5px;
 }
-.menu-children-ul>li{
+.menu-children-ul li{
   list-style: none;
   padding: 10px;
   margin: 0px;
   font-size: 13px;
 }
-.menu-children-ul>li:hover{
+.menu-children-ul li:hover{
   background-color: #f5f5f5;
 
 }
@@ -300,5 +300,8 @@ export default {
 .menu-search-result-ul>li:hover{
   background-color: #efefef;
   color: rgb(255, 203, 0);
+}
+.title a{
+  text-decoration: none;
 }
 </style>

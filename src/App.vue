@@ -12,7 +12,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 #backImg{
   background: url("assets/images/index_back.svg") no-repeat scroll center center / cover;
   width: 100%;
@@ -22,4 +22,24 @@ export default {
   left: 0px;
   z-index: -1;
 }
+.color1{
+  color: rgb(255, 200, 0);
+}
+.color1:hover{
+  color: rgb(255, 168, 0);
+}
+.color1:active{
+  color: rgb(255, 140, 0);
+}
+
+.color2 a{
+  color: rgb(255, 200, 0);
+}
+.color2 a:hover{
+  color: rgb(255, 168, 0);
+}
+.color2 a:active{
+  color: rgb(255, 140, 0);
+}
+
 </style>

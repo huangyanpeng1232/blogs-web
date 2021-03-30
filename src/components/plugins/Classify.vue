@@ -7,9 +7,11 @@
     <hr style="margin-top: 10px;margin-bottom: 15px">
     <ul class="classify-ul">
       <li v-for="classify in classifyList" :key="classify.id">
-        <div class="classify-text" style="float: left;">{{classify.name}}</div>
-        <div class="classify-num" :style="{'background-color':classify.color,'float':'right'}">{{classify.blogSum}}</div>
-        <div style="clear: both"></div>
+        <router-link :to="{ name: 'classify', params: { classifyId: classify.id}}">
+          <div class="classify-text" style="float: left;">{{classify.name}}</div>
+          <div class="classify-num" :style="{'background-color':classify.color,'float':'right'}">{{classify.blogSum}}</div>
+          <div style="clear: both"></div>
+        </router-link>
       </li>
     </ul>
   </div>

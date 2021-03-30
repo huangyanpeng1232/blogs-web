@@ -36,7 +36,7 @@
   text-align: center;
   border-radius: 50%;
   color: #fff;
-  background-color: rgb(100, 204, 255);
+  background-color: rgb(255, 204, 0);
   font-size: 16px;
 }
 .calendar-title .arrow {
@@ -57,7 +57,7 @@
   user-select: none;
 }
 .calendar-title .arrow span:hover {
-  color: rgb(252, 213, 99);
+  color: rgb(255, 204, 0);
 }
 .calendar-title .arrow-prev {
   float: left;
@@ -80,7 +80,7 @@
 }
 .calendar-week {
   padding-bottom: 6px;
-  border-bottom: 1px solid rgb(252, 213, 99);
+  border-bottom: 1px solid rgb(255, 204, 0);
   font-weight: bold;
   cursor: default;
   font-size: 16px;
@@ -118,7 +118,7 @@
   width: 90px;
   height: 48px;
   padding: 6px 10px;
-  background-color: rgb(252, 213, 99);
+  background-color: rgb(255, 204, 0);
   border-radius: 5px;
 }
 .calendar-today .triangle {
@@ -128,7 +128,7 @@
   margin-top: -8px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent rgb(252, 213, 99) transparent transparent;
+  border-color: transparent rgb(255, 204, 0) transparent transparent;
 }
 .calendar-today p {
   color: #fff;

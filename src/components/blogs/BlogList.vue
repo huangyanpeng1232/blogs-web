@@ -14,7 +14,7 @@
         <hr class="content-hr">
         <div class="info">
           <span class="iconfont icon-icon-time">
-            <span>{{ item.insert_time | dateTimeFormat }}</span>
+            <span>{{ item.insert_time | dateFormat }}</span>
           </span>
           <span class="iconfont icon-tag">
             <span>{{ item.tag }}</span>
@@ -106,9 +106,7 @@ export default {
   margin-right: 17px;
 }
 .info > span>span{
-  font-size: 12px;
-  position: relative;
-  top: -2px;
+  font-size: 14px;
   margin-left: 5px;
 }
 

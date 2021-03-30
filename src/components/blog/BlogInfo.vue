@@ -2,7 +2,7 @@
 <div id="BlogInfo">
   <div v-if="blogInfo != null" class="blogInfo">
     <div class="title">{{blogInfo.title}}</div>
-    <div class="info">
+    <div class="info color1">
       <span class="iconfont icon-icon-time">
         <span>{{ blogInfo.insert_time | dateTimeFormat }}</span>
       </span>
@@ -13,7 +13,7 @@
         <span>{{ blogInfo.classify }}</span>
       </span>
       <router-link :to="'/edit/'+blogInfo.id">
-        <span class="iconfont icon-edit edit" style="float: right;" title="编辑文章"></span>
+        <span class="iconfont icon-edit edit color1" style="float: right;" title="编辑文章"></span>
       </router-link>
     </div>
     <hr>
@@ -32,7 +32,7 @@ export default {
   },
   data(){
     return{
-
+      color:'red'
     }
   }
 }
