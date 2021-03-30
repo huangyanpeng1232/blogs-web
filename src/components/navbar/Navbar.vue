@@ -2,52 +2,82 @@
 <div id="Navbar">
   <div class="navbar-div">
     <ul class="menu-ul">
-      <li v-for="menu in menus" :style="{'float':menu.float}" :class="[menu.type]" :key="menu.id">
-        <template v-if="menu.type == 'menu-btn'">
-          <div @mouseover="menu.childrenShow = true" @mouseout="menu.childrenShow = false">
-            <router-link :to="menu.url">
-              <span class="iconfont" :class="[menu.icon]"></span>
-              <span>{{menu.text}}</span>
-
-              <span v-if="menu.children != undefined && menu.children.length > 0" class="menu-btn-down"></span>
-              <ul class="menu-children-ul" v-show="menu.childrenShow" v-if="menu.children != undefined && menu.children.length > 0">
-                <li v-for="item in menu.children" :key="item.id">
-                  {{item.text}}
-                </li>
-              </ul>
+      <li style="float: left" class="title">
+        <router-link to="/">
+            <span class="title" >
+              个人博客
+            </span>
+        </router-link>
+      </li>
+      <li style="float:right;" class="menu-btn">
+          <router-link :to="{name:'add'}">
+            <span class="iconfont icon-edit"></span>
+            <span>创作</span>
+          </router-link>
+      </li>
+      <li style="float:right;" class="menu-btn">
+        <div >
+          <span class="iconfont icon-icon-time"></span>
+          <span>时间线</span>
+        </div>
+      </li>
+      <li style="float:right;" class="menu-btn" @mouseenter="tagListShow = true" @mouseleave="tagListShow = false">
+        <div>
+          <span class="iconfont icon-tag"></span>
+          <span>标签</span>
+          <span v-if="tagList != undefined && tagList.length > 0" class="menu-btn-down"></span>
+        </div>
+        <ul class="menu-children-ul" v-show="tagListShow">
+          <li v-for="item in tagList" :key="item.id">
+            <router-link :to="{ name: 'tag', params: { tagId: item.id}}">
+              {{item.name}}
             </router-link>
-          </div>
-
-        </template>
-        <template v-if="menu.type == 'menu-search'">
-          <div class="search-div" :class="{searchFocus:search.focus,searchBlur:!search.focus}">
-            <span class="iconfont icon-search"></span>
-            <input type="text" v-model="search.intext" @keyup="searchText()" @focus="search.focus = true;searchText()" @blur="search.focus = false;search.resultShow = false" class="search-input" >
-          </div>
-          <ul class="menu-search-result-ul" v-show="search.resultShow" >
-            <li v-for="result in search.result" :key="result.id">
-              {{result.content}}
-            </li>
-          </ul>
-        </template>
-        <template v-if="menu.type == 'title'">
-          <span class="title" >
-            {{menu.text}}
-          </span>
-        </template>
-        <template v-if="menu.type == 'menu-colors'">
-          <span class="iconfont icon-Colorpalette-Filled"></span>
-        </template>
+          </li>
+        </ul>
+      </li>
+      <li style="float:right;" class="menu-btn" @mouseenter="classifyListShow = true" @mouseleave="classifyListShow = false">
+        <div>
+          <span class="iconfont icon-menu"></span>
+          <span>分类</span>
+          <span v-if="classifyList != undefined && classifyList.length > 0" class="menu-btn-down"></span>
+        </div>
+        <ul class="menu-children-ul" v-show="classifyListShow">
+          <li v-for="item in classifyList" :key="item.id">
+            <router-link :to="{ name: 'classify', params: { classifyId: item.id}}">
+              {{item.name}}
+            </router-link>
+          </li>
+        </ul>
+      </li>
+      <li style="float:right;" class="menu-btn">
+        <router-link :to="'/'">
+          <span class="iconfont icon-home"></span>
+          <span>首页</span>
+        </router-link>
+      </li>
+      <li style="float:right;" class="menu-search">
+        <div class="search-div" :class="{searchFocus:search.focus,searchBlur:!search.focus}">
+          <span class="iconfont icon-search"></span>
+          <input type="text" v-model="search.intext" @keyup="searchText()" @focus="search.focus = true;searchText()" @blur="search.focus = false;search.resultShow = false" class="search-input" >
+        </div>
+        <ul class="menu-search-result-ul" v-show="search.resultShow" >
+          <li v-for="result in search.result" :key="result.id">
+            {{result.content}}
+          </li>
+        </ul>
       </li>
     </ul>
   </div>
+  <Alert ref="alert"></Alert>
 </div>
 </template>
 
 <script>
 
+import Alert from "@/components/plugins/Alert";
 export default {
   name: "Navbar",
+  components: {Alert},
   data(){
     return {
       search:{
@@ -77,89 +107,36 @@ export default {
           }
         ]
       },
-      menus:[
-        {
-          id:'5',
-          url:'/',
-          text:'个人博客',
-          type:'title',
-          icon:'icon-tag',
-          float:'left',
-          childrenShow:false
-        },{
-          id:'100',
-          url:'/edit',
-          text:'创作',
-          type:'menu-btn',
-          icon:'icon-edit',
-          float:'right',
-          childrenShow:false
-        },
-        {
-          id:'6',
-          url:'/',
-          text:'时间线',
-          type:'menu-btn',
-          icon:'icon-icon-time',
-          float:'right',
-          childrenShow:false
-        },{
-          id:'7',
-          url:'/',
-          text:'标签',
-          type:'menu-btn',
-          icon:'icon-tag',
-          float:'right',
-          childrenShow:false
-        },{
-          id:'8',
-          url:'/',
-          text:'分类',
-          type:'menu-btn',
-          icon:'icon-menu',
-          float:'right',
-          childrenShow:false,
-          children:[
-            {
-              id:'9',
-              url:'/',
-              type:'menu-btn',
-              text:'Mysql'
-            },{
-              id:'10',
-              url:'/',
-              type:'menu-btn',
-              text:'Redis'
-            },{
-              id:'11',
-              url:'/',
-              type:'menu-btn',
-              text:'Spring Boot'
-            }
-          ]
-        },
-        {
-          id:'12',
-          url:'/',
-          text:'首页',
-          type:'menu-btn',
-          icon:'icon-home',
-          float:'right',
-          childrenShow:false
-        },
-        {
-          id:'13',
-          url:'/',
-          type:'menu-search',
-          float:'right',
-          childrenShow:false
-        }
-      ],
+      classifyList:[],
+      classifyListShow:false,
+      tagList:[],
+      tagListShow:false,
       searchWait:null
-
     }
   },
   methods:{
+    loadClassify(){
+      this.$axios.post('/classify/getActiveClassify').then(response => {
+        if(response.status == 200 && response.data.status == 'succeed'){
+          this.classifyList = response.data.classifyList;
+        }else {
+          this.$refs.alert.alert(response.data.status);
+        }
+      }).catch(e =>{
+        this.$refs.alert.alert('系统错误:'+e);
+      })
+    },
+    loadTag(){
+      this.$axios.post('/tag/getActiveTag').then(response => {
+        if(response.status == 200 && response.data.status == 'succeed'){
+          this.tagList = response.data.tagList;
+        }else {
+          this.$refs.alert.alert(response.data.status);
+        }
+      }).catch(e =>{
+        this.$refs.alert.alert('系统错误:'+e);
+      })
+    },
     searchText:function(){
       if(this.searchWait != null){
         window.clearTimeout(this.searchWait)
@@ -173,6 +150,10 @@ export default {
         this.search.resultShow = false
       }
     }
+  },
+  created:function(){
+    this.loadClassify();
+    this.loadTag();
   }
 }
 </script>
@@ -199,21 +180,25 @@ export default {
 .menu-ul>li{
   list-style: none;
   cursor: pointer;
-  margin: 0px 5px;
+  margin: 0px 7px;
 }
 .menu-btn{
-  font-size: 15px;
+  font-size: 16px;
+  color: rgb(255, 204, 0);
   transition: all 0.1s ease 0s;
 }
-.menu-btn div a{
-  color: #19a9ff;
+.menu-btn a{
+  color: rgb(255, 204, 0);
+  text-decoration:none;
 }
-.menu-btn div a:hover{
-  color: #1692d7;
-  transform: scale(1.1);
+.menu-btn:hover{
+  background-color: #eee;
+  border-radius: 6px;
+  transform: scale(1.12);
+  color: rgb(255, 183, 0);
 }
-.menu-btn div a:active{
-  color: #1080bb;
+.menu-btn a:hover{
+  color: rgb(255, 183, 0);
 }
 .iconfont{
   margin-right: 5px;
@@ -262,24 +247,18 @@ export default {
   position: relative;
   top: 2px;
 }
-.icon-Colorpalette-Filled{
-  font-size: 20px;
-  color: #4fbdff;
-  padding-top: 10px;
-}
+
 .menu-search,.menu-btn{
   padding: 10px;
 }
 .menu-search{
   color: #6a6a6a;
 }
-.menu-colors{
-  padding-top: 10px;
-}
+
 .menu-btn-down{
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 6px solid #4fbdff;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid rgb(255, 204, 0);
   border-bottom: 0;
   position: relative;
   top: 13px;
@@ -289,6 +268,7 @@ export default {
   list-style: none;
   padding: 10px;
   margin: 0px;
+  font-size: 13px;
 }
 .menu-children-ul>li:hover{
   background-color: #f5f5f5;
@@ -319,6 +299,6 @@ export default {
 }
 .menu-search-result-ul>li:hover{
   background-color: #efefef;
-  color: #33b4ff;
+  color: rgb(255, 203, 0);
 }
 </style>

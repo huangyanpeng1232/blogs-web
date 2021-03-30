@@ -77,7 +77,7 @@ export default {
       }
       let param = new FormData(); //创建form对象
       param.append('file',file);
-      this.$axios.post('/blogs/uploadFile',param,{headers:headers}).then(response => {
+      this.$axios.post('/file/uploadFile',param,{headers:headers}).then(response => {
 
         if(response.status == 200 && response.data.status == 'succeed'){
           this.$refs.md.$img2Url(this.img_index++, response.data.url);

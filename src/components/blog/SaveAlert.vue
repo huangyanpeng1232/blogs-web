@@ -18,13 +18,13 @@
             <div class="form-group">
               <div class="col-md-2 name">分类</div>
               <div class="col-md-9">
-                <input type="text" class="form-control" placeholder="文章类型">
+                <input type="text" v-model="blog.classify" class="form-control" placeholder="文章类型">
               </div>
             </div>
             <div class="form-group">
               <div class="col-md-2 name">标签</div>
               <div class="col-md-9">
-                <input type="text" class="form-control" placeholder="标签">
+                <input type="text" v-model="blog.tag" class="form-control" placeholder="标签">
               </div>
             </div>
             <div class="form-group">
@@ -36,8 +36,8 @@
           </form>
         </div>
         <div class="modal-footer">
+          <span id="err_info" v-text="err_info" style="color: #ff6363;font-size: 17px;float: left;margin-left: 100px"></span>
           <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-          <button type="button" class="btn btn-info">暂存</button>
           <button type="button" @click="affirmSave()" class="btn btn-info">保存</button>
         </div>
       </div>
@@ -53,6 +53,11 @@ import Alert from "@/components/plugins/Alert";
 export default {
   name: "SaveAlert",
   props:["blog"],
+  data(){
+    return{
+      err_info:''
+    }
+  },
   components: {Alert},
   methods:{
     save(value,render){
@@ -60,8 +65,26 @@ export default {
       this.blog.content = render;
       $('#save-alert-div').modal('show');
     },
+    alertErr(text){
+      this.err_info = text;
+      let this_ = this;
+      setTimeout(function(){
+        this_.err_info = '';
+      },1000)
+    },
     affirmSave(){
-
+      if(this.blog.title == ''){
+        this.alertErr('请填写标题')
+        return;
+      }
+      if(this.blog.classify == ''){
+        this.alertErr('请填写分类');
+        return;
+      }
+      if(this.blog.tag == ''){
+        this.alertErr('请填写标签');
+        return;
+      }
       let url = '';
       if(this.blog.id == ''){
         url = '/blogs/saveBlog'
@@ -70,13 +93,14 @@ export default {
       }
 
       this.$axios.post(url,this.blog).then(response => {
+        $('#save-alert-div').modal('hide');
         if(response.status == 200 && response.data.status == 'succeed'){
-          $('#save-alert-div').modal('hide');
           this.$router.push({path:'/'})
         }else {
           this.$refs.alert.alert(response.data.status);
         }
       }).catch(e =>{
+        $('#save-alert-div').modal('hide');
         this.$refs.alert.alert('系统错误:'+e);
       })
     }

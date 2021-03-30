@@ -7,8 +7,8 @@
     <hr style="margin-top: 10px;margin-bottom: 15px">
     <ul class="classify-ul">
       <li v-for="classify in classifyList" :key="classify.id">
-        <div class="classify-text" style="float: left;">{{classify.text}}</div>
-        <div class="classify-num" :style="{'background-color':classify.color,'float':'right'}">{{classify.num}}</div>
+        <div class="classify-text" style="float: left;">{{classify.name}}</div>
+        <div class="classify-num" :style="{'background-color':classify.color,'float':'right'}">{{classify.blogSum}}</div>
         <div style="clear: both"></div>
       </li>
     </ul>
@@ -19,45 +19,25 @@
 <script>
 export default {
   name: "Classify",
+  created() {
+    this.loadData();
+  },
+  methods: {
+    loadData(){
+      this.$axios.post('/classify/getActiveClassify').then(response => {
+        if(response.status == 200 && response.data.status == 'succeed'){
+          this.classifyList = response.data.classifyList;
+        }else {
+          this.$refs.alert.alert(response.data.status);
+        }
+      }).catch(e =>{
+        this.$refs.alert.alert('系统错误:'+e);
+      })
+    }
+  },
   data(){
     return{
-      classifyList:[
-        {
-          id:'1',
-          url:'/',
-          text:'Spring Boot',
-          color:'rgb(244, 126, 96)',
-          num:12
-        },
-        {
-          id:'2',
-          url:'/',
-          text:'Mysql',
-          color:'rgb(52, 152, 219)',
-          num:81
-        },
-        {
-          id:'3',
-          url:'/',
-          text:'Redis',
-          color:'rgb(248, 178, 106)',
-          num:120
-        },
-        {
-          id:'4',
-          url:'/',
-          text:'Mybatis',
-          color:'rgb(225, 91, 100)',
-          num:78
-        },
-        {
-          id:'5',
-          url:'/',
-          text:'Java 基础',
-          color:'rgb(29,228,255)',
-          num:4
-        }
-      ]
+      classifyList:[]
     }
   }
 }

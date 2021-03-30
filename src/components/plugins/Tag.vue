@@ -7,75 +7,41 @@
     <hr style="margin-top: 8px;margin-bottom: 5px">
     <ul class="tag-ul">
       <li v-for="tag in tagList" :key="tag.id" :style="{'background-color':tag.color}">
-        {{tag.text}}
+        <router-link :to="{ name: 'tag', params: { tagId: tag.id}}">
+        {{tag.name}}
+        </router-link>
       </li>
       <div style="clear: both"></div>
     </ul>
   </div>
+  <Alert ref="alert"></Alert>
 </div>
 </template>
 
 <script>
+import Alert from "@/components/plugins/Alert";
 export default {
   name: "Tag",
+  components: {Alert},
+  created() {
+    this.loadData();
+  },
+  methods: {
+    loadData(){
+      this.$axios.post('/tag/getActiveTag').then(response => {
+        if(response.status == 200 && response.data.status == 'succeed'){
+          this.tagList = response.data.tagList;
+        }else {
+          this.$refs.alert.alert(response.data.status);
+        }
+      }).catch(e =>{
+        this.$refs.alert.alert('系统错误:'+e);
+      })
+    }
+  },
   data(){
     return{
-      tagList:[
-        {
-          id:'1',
-          url:'/',
-          text:'随手记',
-          color:'#fb9b5f'
-        },
-        {
-          id:'2',
-          url:'/',
-          text:'好文章',
-          color:'#f8b26a'
-        },
-        {
-          id:'3',
-          url:'/',
-          text:'Java 基础支持',
-          color:'#f47e60'
-        },
-        {
-          id:'4',
-          url:'/',
-          text:'最优Spring',
-          color:'#3498db'
-        },
-        {
-          id:'5',
-          url:'/',
-          text:'最棒文章',
-          color:'#abbd81'
-        },
-        {
-          id:'6',
-          url:'/',
-          text:'Hello Java',
-          color:'#e15b64'
-        },
-        {
-          id:'7',
-          url:'/',
-          text:'Python 最强',
-          color:'#67cc86'
-        },
-        {
-          id:'8',
-          url:'/',
-          text:'好文',
-          color:'#f36efc'
-        },
-        {
-          id:'9',
-          url:'/',
-          text:'力荐',
-          color:'#f47e60'
-        }
-      ]
+      tagList:[]
     }
   }
 }
@@ -131,5 +97,9 @@ export default {
 }
 .tag-ul li:hover{
   transform: scale(1.04)
+}
+.tag-ul li a{
+  color: white;
+  text-decoration: none;
 }
 </style>

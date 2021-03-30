@@ -1,6 +1,6 @@
 <template>
   <div id="BlogList">
-    <ul class="blogs-ul">
+    <ul class="blogs-ul" v-if="list.length > 0">
       <li v-for="item in list" :key="item.id">
         <router-link :to="'/blog/'+item.id">
           <div class="title">
@@ -32,52 +32,10 @@ import Alert from "@/components/plugins/Alert";
 export default {
   name: "BlogList",
   components: {Alert},
-  mounted() {
-    window.addEventListener('scroll',this.handleScroll,true)
-  },
-  methods:{
-    handleScroll(){
-      if(this.loading){
-        return;
-      }
-      let scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
-      let windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
-      let scrollHeight = document.documentElement.scrollHeight||document.body.scrollHeight;
-      if(scrollTop + windowHeight > scrollHeight - 500){
-        this.loading = true;
-        console.log(this.loading)
-        this.loadData();
-      }
-    },
-    loadData(){
-      this.index++;
-      this.$axios.post('/blogs/getBlogs',{'index':this.index}).then(response => {
-        if(response.status == 200 && response.data.status == 'succeed'){
-          for(let i = 0;i < response.data.blogs.length;i++){
-            this.list.push(response.data.blogs[i])
-          }
-        }else {
-          this.$refs.alert.alert(response.data.status);
-        }
-        if(response.data.blogs.length == response.data.pageSize){
-          this.loading = false;
-        }
-      }).catch(e =>{
-        this.$refs.alert.alert('系统错误:'+e);
-      })
-    }
-  },
-  created() {
-    if(this.loading){
-      return;
-    }
-    this.loadData();
-  },
+  props:["list"],
   data() {
     return {
-      index:0,
-      loading:false,
-      list: []
+
     }
   }
 }
