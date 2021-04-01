@@ -10,6 +10,9 @@ import BlogIndex from "@/components/blog/BlogIndex";
 import EditBlog from "@/components/blog/EditBlog";
 import Classify from "@/components/blogs/Classify";
 import Tag from "@/components/blogs/Tag";
+import TagAdmin from "@/components/admin/TagAdmin";
+import ClassifyAdmin from "@/components/admin/ClassifyAdmin";
+import BlogsAdmin from "@/components/admin/BlogsAdmin";
 
 const routes = [
     {
@@ -45,6 +48,21 @@ const routes = [
                 name:'add',
                 path:"/add",
                 component: EditBlog
+            },
+            {
+                name:'TagAdmin',
+                path:"/TagAdmin",
+                component: TagAdmin
+            },
+            {
+                name:'BlogsAdmin',
+                path:"/BlogsAdmin",
+                component: BlogsAdmin
+            },
+            {
+                name:'ClassifyAdmin',
+                path:"/ClassifyAdmin",
+                component: ClassifyAdmin
             }
         ]
     }

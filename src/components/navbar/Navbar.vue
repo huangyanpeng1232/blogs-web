@@ -54,6 +54,30 @@
           </template>
         </ul>
       </li>
+      <li style="float:right;" class="menu-btn color2 color1" @mouseenter="adminListShow = true" @mouseleave="adminListShow = false">
+        <div>
+          <span class="iconfont icon-menu"></span>
+          <span>管理</span>
+          <span class="menu-btn-down"></span>
+        </div>
+        <ul class="menu-children-ul" v-show="adminListShow">
+          <router-link :to="{ name: 'BlogsAdmin'}">
+            <li class="color2">
+              文章管理
+            </li>
+          </router-link>
+          <router-link :to="{ name: 'ClassifyAdmin'}">
+            <li class="color2">
+              分类管理
+            </li>
+          </router-link>
+          <router-link :to="{ name: 'TagAdmin'}">
+            <li class="color2">
+              标签管理
+            </li>
+          </router-link>
+        </ul>
+      </li>
       <li style="float:right;" class="menu-btn color2">
         <router-link :to="'/'">
           <span class="iconfont icon-home"></span>
@@ -116,7 +140,8 @@ export default {
       classifyListShow:false,
       tagList:[],
       tagListShow:false,
-      searchWait:null
+      searchWait:null,
+      adminListShow:false
     }
   },
   methods:{

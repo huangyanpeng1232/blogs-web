@@ -6,9 +6,58 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "386336",
+      "name": "勾",
+      "font_class": "gou",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "19449153",
+      "name": "推荐",
+      "font_class": "tuijian",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
+      "icon_id": "915604",
+      "name": "分类 (1)",
+      "font_class": "menu",
+      "unicode": "e670",
+      "unicode_decimal": 58992
+    },
+    {
+      "icon_id": "538852",
+      "name": "TAG",
+      "font_class": "tag",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "1120961",
+      "name": "编辑",
+      "font_class": "edit",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "16563628",
+      "name": "查看",
+      "font_class": "show",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "18311262",
+      "name": "删 除",
+      "font_class": "delete",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
+    },
+    {
       "icon_id": "13253757",
       "name": "edit",
-      "font_class": "edit",
+      "font_class": "edit-blogs",
       "unicode": "e601",
       "unicode_decimal": 58881
     },
@@ -27,13 +76,6 @@
       "unicode_decimal": 59167
     },
     {
-      "icon_id": "348851",
-      "name": "tag",
-      "font_class": "tag",
-      "unicode": "ec33",
-      "unicode_decimal": 60467
-    },
-    {
       "icon_id": "809937",
       "name": "user",
       "font_class": "icon-user",
@@ -41,25 +83,11 @@
       "unicode_decimal": 58940
     },
     {
-      "icon_id": "1185463",
-      "name": "menu",
-      "font_class": "menu",
-      "unicode": "e629",
-      "unicode_decimal": 58921
-    },
-    {
       "icon_id": "10166323",
       "name": "home",
       "font_class": "home",
       "unicode": "e62f",
       "unicode_decimal": 58927
-    },
-    {
-      "icon_id": "19991663",
-      "name": "Color palette-Filled",
-      "font_class": "Colorpalette-Filled",
-      "unicode": "e6b1",
-      "unicode_decimal": 59057
     }
   ]
 }

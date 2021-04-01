@@ -35,6 +35,25 @@ Vue.filter('dateTimeFormat',function(originVal){
   return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
 })
 
+Vue.prototype.toast = function(msg){
+  let duration = 1000;
+  let div = document.createElement('div');
+  div.style.cssText = "text-align: center;height:40px;"
+  let m = document.createElement('span');
+  m.innerHTML = msg;
+  m.style.cssText = "opacity: 0.5;color: rgb(255, 255, 255);padding:8px 25px;text-align: center;border-radius: 4px;z-index: 999999;background: rgb(0, 0, 0);font-size: 18px;";
+  div.appendChild(m)
+  document.body.appendChild(div);
+  setTimeout(function () {
+    let d = 0.5;
+    m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+    m.style.opacity = '0';
+    setTimeout(function () {
+      document.body.removeChild(div)
+    }, d * 1000);
+  }, duration);
+}
+
 Vue.filter('dateFormat',function(originVal){
   const dt = new Date(originVal)
   //年的时间

@@ -62,6 +62,7 @@ export default {
   methods:{
     save:function (value,render){
       if(value.length == 0){
+
         this.$refs.alert.alert('请编辑内容后保存哦');
         return;
       }
@@ -78,7 +79,6 @@ export default {
       let param = new FormData(); //创建form对象
       param.append('file',file);
       this.$axios.post('/file/uploadFile',param,{headers:headers}).then(response => {
-
         if(response.status == 200 && response.data.status == 'succeed'){
           this.$refs.md.$img2Url(this.img_index++, response.data.url);
         }else {
@@ -87,7 +87,6 @@ export default {
       }).catch(e =>{
         this.$refs.alert.alert('系统错误:'+e);
       })
-      return "1233"
     },
     imgDel:function(name){
 

@@ -12,6 +12,7 @@
         </div>
       </div>
     </div>
+    <Alert ref="alert"></Alert>
   </div>
 </template>
 
@@ -21,6 +22,7 @@ import BlogList from "@/components/blogs/BlogList";
 import Calendar from "@/components/plugins/Calendar";
 import Classify from "@/components/plugins/Classify";
 import Tag from "@/components/plugins/Tag";
+import Alert from "@/components/plugins/Alert";
 
 export default {
   name: "Home",
@@ -31,7 +33,7 @@ export default {
       dataList:[]
     }
   },
-  components: {Tag, Classify, Calendar, BlogList},
+  components: {Alert, Tag, Classify, Calendar, BlogList},
   mounted() {
     window.addEventListener('scroll',this.handleScroll,true)
   },
