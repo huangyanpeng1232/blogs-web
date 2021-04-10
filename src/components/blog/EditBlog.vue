@@ -15,18 +15,18 @@
         style="height: 100vh;z-index: 0"
     />
   </div>
-  <Alert ref="alert"></Alert>
+
   <SaveAlert ref="saveAlert" :blog="blog"></SaveAlert>
 
 </div>
 </template>
 
 <script>
-import Alert from "@/components/plugins/Alert";
+
 import SaveAlert from "@/components/blog/SaveAlert";
 export default {
   name: "EditBlog",
-  components: {SaveAlert, Alert},
+  components: {SaveAlert},
   data(){
     return{
       blogId:this.$route.params.blogId,
@@ -52,18 +52,19 @@ export default {
         if(response.status == 200 && response.data.status == 'succeed'){
           this.blog = response.data.blog;
         }else {
-          this.$refs.alert.alert(response.data.status);
+          vueApp.$refs.alert.alert(response.data.status);
         }
       }).catch(e =>{
-        this.$refs.alert.alert('系统错误:'+e);
+        vueApp.$refs.alert.alert('系统错误:'+e);
       })
     }
   },
   methods:{
     save:function (value,render){
+
       if(value.length == 0){
 
-        this.$refs.alert.alert('请编辑内容后保存哦');
+        vueApp.$refs.alert.alert('请编辑内容后保存哦');
         return;
       }
       this.$refs.saveAlert.save(value,render)
@@ -82,10 +83,10 @@ export default {
         if(response.status == 200 && response.data.status == 'succeed'){
           this.$refs.md.$img2Url(this.img_index++, response.data.url);
         }else {
-          this.$refs.alert.alert(response.data.status);
+          vueApp.$refs.alert.alert(response.data.status);
         }
       }).catch(e =>{
-        this.$refs.alert.alert('系统错误:'+e);
+        vueApp.$refs.alert.alert('系统错误:'+e);
       })
     },
     imgDel:function(name){

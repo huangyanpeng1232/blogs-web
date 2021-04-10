@@ -10,8 +10,8 @@
         </router-link>
       </li>
       <li style="float:right;" class="menu-btn color2">
-          <router-link :to="{name:'add'}">
-            <span class="iconfont icon-edit"></span>
+          <router-link class="color1" :to="{name:'add'}">
+            <span class="iconfont icon-edit-blogs"></span>
             <span>创作</span>
           </router-link>
       </li>
@@ -97,16 +97,15 @@
       </li>
     </ul>
   </div>
-  <Alert ref="alert"></Alert>
+
 </div>
 </template>
 
 <script>
 
-import Alert from "@/components/plugins/Alert";
+
 export default {
   name: "Navbar",
-  components: {Alert},
   data(){
     return {
       search:{
@@ -150,10 +149,10 @@ export default {
         if(response.status == 200 && response.data.status == 'succeed'){
           this.classifyList = response.data.classifyList;
         }else {
-          this.$refs.alert.alert(response.data.status);
+          vueApp.$refs.alert.alert(response.data.status);
         }
       }).catch(e =>{
-        this.$refs.alert.alert('系统错误:'+e);
+        vueApp.$refs.alert.alert('系统错误:'+e);
       })
     },
     loadTag(){
@@ -161,10 +160,10 @@ export default {
         if(response.status == 200 && response.data.status == 'succeed'){
           this.tagList = response.data.tagList;
         }else {
-          this.$refs.alert.alert(response.data.status);
+          vueApp.$refs.alert.alert(response.data.status);
         }
       }).catch(e =>{
-        this.$refs.alert.alert('系统错误:'+e);
+        vueApp.$refs.alert.alert('系统错误:'+e);
       })
     },
     searchText:function(){
@@ -243,7 +242,6 @@ export default {
   outline:medium;
   font-size: 16px;
   color: #666;
-
 }
 
 .searchFocus{
@@ -266,13 +264,15 @@ export default {
 }
 .title{
   margin: 0px;
-  color: #333;
   font-weight: bold;
   font-size: 19px;
   position: relative;
   top: 2px;
+  color: #444;
 }
-
+.title a{
+  outline: none;
+}
 .menu-search,.menu-btn{
   padding: 10px;
 }
@@ -283,7 +283,7 @@ export default {
 .menu-btn-down{
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-top: 6px solid rgb(255, 204, 0);
+  border-top: 6px solid #666;
   border-bottom: 0;
   position: relative;
   top: 13px;
@@ -294,6 +294,10 @@ export default {
   padding: 10px;
   margin: 0px;
   font-size: 13px;
+}
+.menu-children-ul a{
+  border-top: 6px solid #666;
+  outline: none;
 }
 .menu-children-ul li:hover{
   background-color: #f5f5f5;
@@ -309,6 +313,15 @@ export default {
   box-shadow: 0 1px 4px 0 rgba(0,0,0,0.2);
   min-width: 140px;
 }
+.menu-children-ul a:link {
+  color: #666;
+}
+.menu-children-ul a:visited {
+  color: #666;
+}
+.menu-children-ul a:hover {
+  color: #444;
+}
 .menu-search-result-ul{
   width: 300px;
   border: 1px solid #ccc;
@@ -319,12 +332,12 @@ export default {
   list-style: none;
   padding: 7px;
   border-radius: 3px;
-  color: #555;
+  color: #666;
   font-size: 13px;
 }
 .menu-search-result-ul>li:hover{
   background-color: #efefef;
-  color: rgb(255, 203, 0);
+  color: #666;
 }
 .title a{
   text-decoration: none;

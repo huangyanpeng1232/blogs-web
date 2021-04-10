@@ -1,5 +1,5 @@
 <template>
-  <div class="modal fade myAlert" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="publicAlert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">{{alertContent}}</div>
@@ -22,8 +22,9 @@ export default {
   },
   methods:{
     alert:function (content){
+      alert(content)
       this.alertContent = content
-      $('.myAlert').modal('show')
+      $('#publicAlert').modal('show')
     }
   }
 }

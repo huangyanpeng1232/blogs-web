@@ -12,7 +12,7 @@
         </div>
       </div>
     </div>
-    <Alert ref="alert"></Alert>
+
   </div>
 </template>
 
@@ -22,7 +22,7 @@ import BlogList from "@/components/blogs/BlogList";
 import Calendar from "@/components/plugins/Calendar";
 import Classify from "@/components/plugins/Classify";
 import Tag from "@/components/plugins/Tag";
-import Alert from "@/components/plugins/Alert";
+
 
 export default {
   name: "Home",
@@ -33,7 +33,7 @@ export default {
       dataList:[]
     }
   },
-  components: {Alert, Tag, Classify, Calendar, BlogList},
+  components: {Tag, Classify, Calendar, BlogList},
   mounted() {
     window.addEventListener('scroll',this.handleScroll,true)
   },
@@ -51,7 +51,7 @@ export default {
       let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       let windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
       let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-      if (scrollTop + windowHeight > scrollHeight - 500) {
+      if (scrollTop + windowHeight > scrollHeight - 800) {
         this.loading = true;
         this.loadData();
       }
@@ -64,13 +64,13 @@ export default {
             this.dataList.push(response.data.blogs[i])
           }
         } else {
-          this.$refs.alert.alert(response.data.status);
+          vueApp.$refs.alert.alert(response.data.status);
         }
         if (response.data.blogs.length == response.data.pageSize) {
           this.loading = false;
         }
       }).catch(e => {
-        this.$refs.alert.alert('系统错误:' + e);
+        vueApp.$refs.alert.alert('系统错误:' + e);
       })
     }
   }

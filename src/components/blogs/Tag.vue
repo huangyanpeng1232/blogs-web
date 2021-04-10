@@ -12,7 +12,7 @@
         </div>
       </div>
     </div>
-    <Alert ref="alert"></Alert>
+
   </div>
 </template>
 
@@ -22,7 +22,7 @@ import BlogList from "@/components/blogs/BlogList";
 import CalendarPlugins from "@/components/plugins/Calendar";
 import ClassifyPlugins from "@/components/plugins/Classify";
 import TagPlugins from "@/components/plugins/Tag";
-import Alert from "@/components/plugins/Alert";
+
 
 export default {
   name: "Tag",
@@ -46,7 +46,7 @@ export default {
       deep:true
     }
   },
-  components: {Alert, TagPlugins, ClassifyPlugins, CalendarPlugins, BlogList},
+  components: {TagPlugins, ClassifyPlugins, CalendarPlugins, BlogList},
   mounted() {
    window.addEventListener('scroll',this.handleScroll,true)
   },
@@ -75,13 +75,13 @@ export default {
             this.dataList.push(response.data.blogs[i])
           }
         } else {
-          this.$refs.alert.alert(response.data.status);
+          vueApp.$refs.alert.alert(response.data.status);
         }
         if (response.data.blogs.length == response.data.pageSize) {
           this.loading = false;
         }
       }).catch(e => {
-        this.$refs.alert.alert('系统错误:' + e);
+        vueApp.$refs.alert.alert('系统错误:' + e);
       })
     }
   }

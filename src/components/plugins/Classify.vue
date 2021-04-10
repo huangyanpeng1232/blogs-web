@@ -30,10 +30,10 @@ export default {
         if(response.status == 200 && response.data.status == 'succeed'){
           this.classifyList = response.data.classifyList;
         }else {
-          this.$refs.alert.alert(response.data.status);
+          vueApp.$refs.alert.alert(response.data.status);
         }
       }).catch(e =>{
-        this.$refs.alert.alert('系统错误:'+e);
+        vueApp.$refs.alert.alert('系统错误:'+e);
       })
     }
   },

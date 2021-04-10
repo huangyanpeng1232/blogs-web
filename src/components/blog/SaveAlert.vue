@@ -24,7 +24,12 @@
             <div class="form-group">
               <div class="col-md-2 name">标签</div>
               <div class="col-md-9">
-                <input type="text" v-model="blog.tag" class="form-control" placeholder="标签">
+                <ul class="tag-ul">
+                  <li>Java</li>
+                  <li>123</li>
+                  <li>757</li>
+                </ul>
+                <input value="添加" class="btn btn-info">
               </div>
             </div>
             <div class="form-group">
@@ -43,26 +48,27 @@
       </div>
     </div>
   </div>
-  <Alert ref="alert"></Alert>
+
 </div>
 </template>
 
 <script>
-import Alert from "@/components/plugins/Alert";
+
 
 export default {
   name: "SaveAlert",
   props:["blog"],
   data(){
     return{
-      err_info:''
+      err_info:'',
+      tagSelectShow:false
     }
   },
-  components: {Alert},
   methods:{
     save(value,render){
       this.blog.markdown = value;
       this.blog.content = render;
+
       $('#save-alert-div').modal('show');
     },
     alertErr(text){
@@ -97,11 +103,11 @@ export default {
         if(response.status == 200 && response.data.status == 'succeed'){
           this.$router.push({path:'/'})
         }else {
-          this.$refs.alert.alert(response.data.status);
+          vueApp.$refs.alert.alert(response.data.status);
         }
       }).catch(e =>{
         $('#save-alert-div').modal('hide');
-        this.$refs.alert.alert('系统错误:'+e);
+        vueApp.$refs.alert.alert('系统错误:'+e);
       })
     }
   }
@@ -120,5 +126,17 @@ export default {
   resize: vertical;
   min-height: 60px;
   max-height: 260px;
+}
+.tag-ul{
+  padding-left: 0px;
+  width: 100%;
+  min-height: 60px;
+}
+.tag-ul li{
+  list-style: none;
+  float: left;
+  padding: 3px;
+  margin: 3px;
+  color: white;
 }
 </style>

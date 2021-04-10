@@ -48,7 +48,7 @@
       </div>
     </div>
     <input class="selectColor-input" @change="colorChange()" type="color" style="display: none;" />
-    <Alert ref="alert"></Alert>
+
     <div class="modal fade deleteAffirm" tabindex="-1" role="dialog" aria-labelledby="deleteAffirmLabel"
          aria-hidden="true">
       <div class="modal-dialog" v-if="affirmClassify != null">
@@ -71,11 +71,10 @@
 </template>
 
 <script>
-import Alert from "@/components/plugins/Alert";
+
 
 export default {
   name: "ClassifyAdmin",
-  components: {Alert},
   data() {
     return {
       dataList: [],
@@ -93,10 +92,10 @@ export default {
           }
           this.dataList = list
         } else {
-          this.$refs.alert.alert(response.data.status);
+          vueApp.$refs.alert.alert(response.data.status);
         }
       }).catch(e => {
-        this.$refs.alert.alert('系统错误:' + e);
+        vueApp.$refs.alert.alert('系统错误:' + e);
       })
     },
     selectColor(classify){
@@ -119,10 +118,10 @@ export default {
         if (response.status == 200 && response.data.status == 'succeed') {
           this.toast('修改成功');
         } else {
-          this.$refs.alert.alert(response.data.status);
+          vueApp.$refs.alert.alert(response.data.status);
         }
       }).catch(e => {
-        this.$refs.alert.alert('系统错误:' + e);
+        vueApp.$refs.alert.alert('系统错误:' + e);
       })
     },
     affirmDeleteClassify(classify) {
@@ -135,10 +134,10 @@ export default {
         if (response.status == 200 && response.data.status == 'succeed') {
           this.toast('删除成功');
         } else {
-          this.$refs.alert.alert(response.data.status);
+          vueApp.$refs.alert.alert(response.data.status);
         }
       }).catch(e => {
-        this.$refs.alert.alert('系统错误:' + e);
+        vueApp.$refs.alert.alert('系统错误:' + e);
       })
       for (let i = 0; i < this.dataList.length; i++) {
         if (this.dataList[i].id == this.affirmClassify.id) {
@@ -209,7 +208,9 @@ export default {
   color: #111;
   background-color: #e7e7e7;
 }
-
+.title-tr{
+  cursor: default;
+}
 .title-tr th {
   text-align: center;
 }
@@ -217,7 +218,9 @@ export default {
 .edit-classify-input {
   text-align: center;
 }
-
+.classify-tab tbody tr:hover{
+  background-color: #f6f6f6;
+}
 .recommend {
   background-color: #b4ffa8;
 }

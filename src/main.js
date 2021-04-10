@@ -66,7 +66,8 @@ Vue.filter('dateFormat',function(originVal){
   return `${y}-${m}-${d}`
 })
 
-new Vue({
+var vueApp = new Vue({
   router,
   render: h => h(App),
 }).$mount('#app')
+

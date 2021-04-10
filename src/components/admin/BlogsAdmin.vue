@@ -52,7 +52,7 @@
         </div>
       </div>
     </div>
-    <Alert ref="alert"></Alert>
+
     <div class="modal fade deleteAffirm" tabindex="-1" role="dialog" aria-labelledby="deleteAffirmLabel"
          aria-hidden="true">
       <div class="modal-dialog" v-if="affirmBlog != null">
@@ -75,11 +75,10 @@
 </template>
 
 <script>
-import Alert from "@/components/plugins/Alert";
+
 
 export default {
   name: "BlogsAdmin",
-  components: {Alert},
   data() {
     return {
       index:0,
@@ -103,13 +102,13 @@ export default {
             this.dataList.push(list[i])
           }
         } else {
-          this.$refs.alert.alert(response.data.status);
+          vueApp.$refs.alert.alert(response.data.status);
         }
         if (response.data.blogs.length == response.data.pageSize) {
           this.loading = false;
         }
       }).catch(e => {
-        this.$refs.alert.alert('系统错误:' + e);
+        vueApp.$refs.alert.alert('系统错误:' + e);
       })
     },
     affirmDeleteBlog(blog) {
@@ -122,10 +121,10 @@ export default {
         if (response.status == 200 && response.data.status == 'succeed') {
           this.toast('删除成功');
         } else {
-          this.$refs.alert.alert(response.data.status);
+          vueApp.$refs.alert.alert(response.data.status);
         }
       }).catch(e => {
-        this.$refs.alert.alert('系统错误:' + e);
+        vueApp.$refs.alert.alert('系统错误:' + e);
       })
       for (let i = 0; i < this.dataList.length; i++) {
         if (this.dataList[i].id == this.affirmBlog.id) {
@@ -189,9 +188,14 @@ export default {
   color: #111;
   background-color: #e7e7e7;
 }
-
+.btns a{
+  text-decoration: none;
+}
 .title-tr th {
   text-align: center;
+  cursor: default;
 }
-
+.blogs-tab tbody tr:hover{
+  background-color: #f6f6f6;
+}
 </style>

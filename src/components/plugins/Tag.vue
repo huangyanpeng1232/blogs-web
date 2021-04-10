@@ -14,15 +14,14 @@
       <div style="clear: both"></div>
     </ul>
   </div>
-  <Alert ref="alert"></Alert>
+
 </div>
 </template>
 
 <script>
-import Alert from "@/components/plugins/Alert";
+
 export default {
   name: "Tag",
-  components: {Alert},
   created() {
     this.loadData();
   },
@@ -32,10 +31,10 @@ export default {
         if(response.status == 200 && response.data.status == 'succeed'){
           this.tagList = response.data.tagList;
         }else {
-          this.$refs.alert.alert(response.data.status);
+          vueApp.$refs.alert.alert(response.data.status);
         }
       }).catch(e =>{
-        this.$refs.alert.alert('系统错误:'+e);
+        vueApp.$refs.alert.alert('系统错误:'+e);
       })
     }
   },

@@ -73,13 +73,13 @@ export default {
             this.dataList.push(response.data.blogs[i])
           }
         } else {
-          this.$refs.alert.alert(response.data.status);
+          vueApp.$refs.alert.alert(response.data.status);
         }
         if (response.data.blogs.length == response.data.pageSize) {
           this.loading = false;
         }
       }).catch(e => {
-        this.$refs.alert.alert('系统错误:' + e);
+        vueApp.$refs.alert.alert('系统错误:' + e);
       })
     }
   }
