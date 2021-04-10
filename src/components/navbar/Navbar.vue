@@ -149,10 +149,10 @@ export default {
         if(response.status == 200 && response.data.status == 'succeed'){
           this.classifyList = response.data.classifyList;
         }else {
-          vueApp.$refs.alert.alert(response.data.status);
+          this.alert(response.data.status);
         }
       }).catch(e =>{
-        vueApp.$refs.alert.alert('系统错误:'+e);
+        this.alert('系统错误:'+e,'错误');
       })
     },
     loadTag(){
@@ -160,10 +160,10 @@ export default {
         if(response.status == 200 && response.data.status == 'succeed'){
           this.tagList = response.data.tagList;
         }else {
-          vueApp.$refs.alert.alert(response.data.status);
+          this.alert(response.data.status);
         }
       }).catch(e =>{
-        vueApp.$refs.alert.alert('系统错误:'+e);
+        this.alert('系统错误:'+e,'错误');
       })
     },
     searchText:function(){

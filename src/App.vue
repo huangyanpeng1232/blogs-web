@@ -1,17 +1,15 @@
 <template>
   <div id="app">
-    <div id="backImg"></div>
-    <Alert ref="alert"></Alert>
+<!--    <div id="backImg"></div>-->
     <router-view></router-view>
+
   </div>
 </template>
 
 <script>
 
-import Alert from "@/components/plugins/Alert";
 export default {
-  name: 'App',
-  components: {Alert}
+  name: 'App'
 }
 </script>
 

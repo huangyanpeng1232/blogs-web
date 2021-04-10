@@ -102,13 +102,13 @@ export default {
             this.dataList.push(list[i])
           }
         } else {
-          vueApp.$refs.alert.alert(response.data.status);
+          this.alert(response.data.status);
         }
         if (response.data.blogs.length == response.data.pageSize) {
           this.loading = false;
         }
       }).catch(e => {
-        vueApp.$refs.alert.alert('系统错误:' + e);
+        this.alert('系统错误:' + e,'错误');
       })
     },
     affirmDeleteBlog(blog) {
@@ -121,10 +121,10 @@ export default {
         if (response.status == 200 && response.data.status == 'succeed') {
           this.toast('删除成功');
         } else {
-          vueApp.$refs.alert.alert(response.data.status);
+          this.alert(response.data.status);
         }
       }).catch(e => {
-        vueApp.$refs.alert.alert('系统错误:' + e);
+        this.alert('系统错误:' + e,'错误');
       })
       for (let i = 0; i < this.dataList.length; i++) {
         if (this.dataList[i].id == this.affirmBlog.id) {

@@ -2,6 +2,10 @@
   <div class="modal fade" id="publicAlert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+        </div>
         <div class="modal-body">{{alertContent}}</div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">好的</button>
@@ -17,13 +21,12 @@ export default {
   name: "Alert",
   data(){
     return{
+      title:'',
       alertContent: ''
     }
   },
   methods:{
-    alert:function (content){
-      alert(content)
-      this.alertContent = content
+    show:function (){
       $('#publicAlert').modal('show')
     }
   }

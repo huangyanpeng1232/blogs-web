@@ -24,6 +24,7 @@ import ClassifyPlugins from "@/components/plugins/Classify";
 import TagPlugins from "@/components/plugins/Tag";
 
 
+
 export default {
   name: "Tag",
   data(){
@@ -75,13 +76,13 @@ export default {
             this.dataList.push(response.data.blogs[i])
           }
         } else {
-          vueApp.$refs.alert.alert(response.data.status);
+          this.alert(response.data.status);
         }
         if (response.data.blogs.length == response.data.pageSize) {
           this.loading = false;
         }
       }).catch(e => {
-        vueApp.$refs.alert.alert('系统错误:' + e);
+        this.alert('系统错误:' + e,'错误');
       })
     }
   }

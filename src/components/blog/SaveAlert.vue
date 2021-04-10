@@ -25,11 +25,21 @@
               <div class="col-md-2 name">标签</div>
               <div class="col-md-9">
                 <ul class="tag-ul">
-                  <li>Java</li>
-                  <li>123</li>
-                  <li>757</li>
+                  <li v-for="tag in blog.tags" @click="removeTag(tag)" :key="tag.name" title="点击删除">
+                    {{tag.name}}
+                  </li>
                 </ul>
-                <input value="添加" class="btn btn-info">
+                <div v-show="addTagIng">
+                  <div class="row">
+                    <div class="col-md-9">
+                      <input type="text" v-model="addTagText" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                      <input value="添加" @click="addTag()" style="width: 100%;" class="btn btn-info">
+                    </div>
+                  </div>
+                </div>
+                <input value="添加" @click="addTagIng = !addTagIng" v-show="!addTagIng" class="btn btn-info">
               </div>
             </div>
             <div class="form-group">
@@ -61,7 +71,9 @@ export default {
   data(){
     return{
       err_info:'',
-      tagSelectShow:false
+      tagSelectShow:false,
+      addTagIng:false,
+      addTagText:''
     }
   },
   methods:{
@@ -70,6 +82,18 @@ export default {
       this.blog.content = render;
 
       $('#save-alert-div').modal('show');
+    },
+    addTag(){
+      this.blog.tags.push({name:this.addTagText})
+      this.addTagText = '';
+      this.addTagIng = false;
+    },
+    removeTag(tag){
+      for (let i = 0; i < this.blog.tags.length; i++) {
+        if(this.blog.tags[i].name == tag.name){
+          this.blog.tags.splice(i, 1);
+        }
+      }
     },
     alertErr(text){
       this.err_info = text;
@@ -87,10 +111,7 @@ export default {
         this.alertErr('请填写分类');
         return;
       }
-      if(this.blog.tag == ''){
-        this.alertErr('请填写标签');
-        return;
-      }
+
       let url = '';
       if(this.blog.id == ''){
         url = '/blogs/saveBlog'
@@ -103,11 +124,11 @@ export default {
         if(response.status == 200 && response.data.status == 'succeed'){
           this.$router.push({path:'/'})
         }else {
-          vueApp.$refs.alert.alert(response.data.status);
+          this.alert(response.data.status);
         }
       }).catch(e =>{
         $('#save-alert-div').modal('hide');
-        vueApp.$refs.alert.alert('系统错误:'+e);
+        this.alert('系统错误:'+e);
       })
     }
   }
@@ -131,12 +152,21 @@ export default {
   padding-left: 0px;
   width: 100%;
   min-height: 60px;
+  margin-bottom: 0px;
 }
 .tag-ul li{
   list-style: none;
   float: left;
-  padding: 3px;
+  padding: 3px 7px;
   margin: 3px;
+  color: #666;
+  border: 1px solid #666;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.tag-ul li:hover{
+  background-color: #555555;
   color: white;
+  border: 1px solid white;
 }
 </style>

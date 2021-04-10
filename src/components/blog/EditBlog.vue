@@ -52,10 +52,10 @@ export default {
         if(response.status == 200 && response.data.status == 'succeed'){
           this.blog = response.data.blog;
         }else {
-          vueApp.$refs.alert.alert(response.data.status);
+          this.alert(response.data.status);
         }
       }).catch(e =>{
-        vueApp.$refs.alert.alert('系统错误:'+e);
+        this.alert('系统错误:'+e);
       })
     }
   },
@@ -64,7 +64,7 @@ export default {
 
       if(value.length == 0){
 
-        vueApp.$refs.alert.alert('请编辑内容后保存哦');
+        this.alert('请编辑内容后保存哦');
         return;
       }
       this.$refs.saveAlert.save(value,render)
@@ -83,10 +83,10 @@ export default {
         if(response.status == 200 && response.data.status == 'succeed'){
           this.$refs.md.$img2Url(this.img_index++, response.data.url);
         }else {
-          vueApp.$refs.alert.alert(response.data.status);
+          this.alert(response.data.status);
         }
       }).catch(e =>{
-        vueApp.$refs.alert.alert('系统错误:'+e);
+        this.alert('系统错误:'+e);
       })
     },
     imgDel:function(name){

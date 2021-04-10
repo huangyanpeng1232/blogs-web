@@ -8,10 +8,20 @@ import axios from 'axios'
 import router from './router.js'
 import '@/assets/icons/iconfont.css'
 
+
+import alert from '@/assets/js/alert' //这里引入的是js文件
+
+Vue.prototype.alert = alert;
+
+
+
+
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 
 Vue.use(mavonEditor)
+
+
 
 axios.defaults.baseURL='http://127.0.0.1:8080'
 Vue.prototype.$axios = axios
@@ -66,7 +76,10 @@ Vue.filter('dateFormat',function(originVal){
   return `${y}-${m}-${d}`
 })
 
-var vueApp = new Vue({
+
+
+
+new Vue({
   router,
   render: h => h(App),
 }).$mount('#app')

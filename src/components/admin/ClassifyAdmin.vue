@@ -29,8 +29,8 @@
                   {{ classify.color }}
                 </div>
               </td>
-              <td @click="classify.active = !classify.active;changeTuiJian(classify)" style="cursor: pointer" :class="{'recommend':classify.active,'not-recommend':!classify.active}">
-                {{ classify.active ? '已推荐' : '未推荐' }}
+              <td @click="classify.active = classify.active == 1?0:1;changeTuiJian(classify)" style="cursor: pointer" :class="{'recommend':classify.active,'not-recommend':!classify.active}">
+                {{ classify.active == 1 ? '已推荐' : '未推荐' }}
               </td>
               <td class="btns">
                 <router-link :to="{ name: 'classify', params: { classifyId: classify.id}}">
@@ -92,10 +92,10 @@ export default {
           }
           this.dataList = list
         } else {
-          vueApp.$refs.alert.alert(response.data.status);
+          this.alert(response.data.status);
         }
       }).catch(e => {
-        vueApp.$refs.alert.alert('系统错误:' + e);
+        this.alert('系统错误:' + e,'错误');
       })
     },
     selectColor(classify){
@@ -118,10 +118,10 @@ export default {
         if (response.status == 200 && response.data.status == 'succeed') {
           this.toast('修改成功');
         } else {
-          vueApp.$refs.alert.alert(response.data.status);
+          this.alert(response.data.status);
         }
       }).catch(e => {
-        vueApp.$refs.alert.alert('系统错误:' + e);
+        this.alert('系统错误:' + e,'错误');
       })
     },
     affirmDeleteClassify(classify) {
@@ -134,10 +134,10 @@ export default {
         if (response.status == 200 && response.data.status == 'succeed') {
           this.toast('删除成功');
         } else {
-          vueApp.$refs.alert.alert(response.data.status);
+          this.alert(response.data.status);
         }
       }).catch(e => {
-        vueApp.$refs.alert.alert('系统错误:' + e);
+        this.alert('系统错误:' + e,'错误');
       })
       for (let i = 0; i < this.dataList.length; i++) {
         if (this.dataList[i].id == this.affirmClassify.id) {
