@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-9">
-          <BlogList :list="dataList"></BlogList>
+          <BlogList ref="blogList" :list="dataList"></BlogList>
         </div>
         <div class="col-md-3">
           <CalendarPlugins></CalendarPlugins>
@@ -74,6 +74,9 @@ export default {
         if (response.status == 200 && response.data.status == 'succeed') {
           for (let i = 0; i < response.data.blogs.length; i++) {
             this.dataList.push(response.data.blogs[i])
+          }
+          if(this.dataList.length == 0){
+            this.$refs.blogList.loadEnd = true;
           }
         } else {
           this.alert(response.data.status);

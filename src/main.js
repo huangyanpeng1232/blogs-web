@@ -23,6 +23,7 @@ Vue.use(mavonEditor)
 
 
 
+// axios.defaults.baseURL='http://47.94.251.61:8080'
 axios.defaults.baseURL='http://127.0.0.1:8080'
 Vue.prototype.$axios = axios
 

@@ -26,21 +26,19 @@ export default {
 .color1{
   color: #666;
 }
+.color1 a{
+  color: inherit;
+}
 .color1:hover{
-  color: #444;
+  color: #22b7ff;
+}
+.color1 a:hover{
+  color: inherit;
 }
 .color1:active{
-  color: #222;
+  color: #139ad9;
 }
-
-.color2 a{
-  color: #666;
+.color1 a:active{
+  color: inherit;
 }
-.color2 a:hover{
-  color: #444;
-}
-.color2 a:active{
-  color: #222;
-}
-
 </style>

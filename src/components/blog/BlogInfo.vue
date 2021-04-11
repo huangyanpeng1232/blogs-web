@@ -9,7 +9,7 @@
         <span class="iconfont icon-menu color1">
         <span>{{ blogInfo.classify }}</span>
       </span>
-      <router-link :to="'/edit/'+blogInfo.id">
+      <router-link v-show="false" :to="'/edit/'+blogInfo.id">
         <span class="iconfont icon-edit edit color1" style="float: right;" title="编辑文章"></span>
       </router-link>
       </div>

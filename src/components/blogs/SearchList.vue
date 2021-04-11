@@ -1,5 +1,5 @@
 <template>
-  <div id="Classify">
+  <div id="SearchList">
     <div class="container">
       <div class="row">
         <div class="col-md-9">
@@ -22,23 +22,25 @@ import CalendarPlugins from "@/components/plugins/Calendar";
 import ClassifyPlugins from "@/components/plugins/Classify";
 import TagPlugins from "@/components/plugins/Tag";
 
+
+
 export default {
-  name: "Classify",
+  name: "SearchList",
   data(){
     return{
       index:0,
-      classifyId: this.$route.params.classifyId,
+      searchText: this.$route.params.searchText,
       loading:false,
       dataList:[]
     }
   },
   watch:{
-    "$route.params.classifyId":{
+    "$route.params.searchText":{
       handler(val, oldVal){
         this.loading = false;
         this.index = 0;
         this.dataList= [];
-        this.classifyId = val
+        this.searchText = val
         this.loadData();
       },
       deep:true
@@ -66,7 +68,7 @@ export default {
       }
       this.loading = true;
       this.index++;
-      this.$axios.post('/classify/getBlogsByClassId', {'index':this.index,'classifyId': this.classifyId}).then(response => {
+      this.$axios.post('/blogs/getBlogs', {'index':this.index,'searchText':this.searchText}).then(response => {
 
         if (response.status == 200 && response.data.status == 'succeed') {
           for (let i = 0; i < response.data.blogs.length; i++) {

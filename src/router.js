@@ -13,6 +13,7 @@ import Tag from "@/components/blogs/Tag";
 import TagAdmin from "@/components/admin/TagAdmin";
 import ClassifyAdmin from "@/components/admin/ClassifyAdmin";
 import BlogsAdmin from "@/components/admin/BlogsAdmin";
+import SearchList from "@/components/blogs/SearchList";
 
 const routes = [
     {
@@ -23,6 +24,11 @@ const routes = [
                 name:'/',
                 path:"/",
                 component: Home
+            },
+            {
+                name:'search',
+                path:"/search/:searchText",
+                component: SearchList
             },
             {
                 name:'blog',

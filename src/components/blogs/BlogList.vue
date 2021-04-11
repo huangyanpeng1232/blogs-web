@@ -28,8 +28,12 @@
           <div style="clear: both"></div>
         </div>
       </li>
-    </ul>
 
+    </ul>
+    <div v-if="list.length == 0 && loadEnd" class="notBlogs text-center" >
+      <img src="../../assets/images/notSearch.gif">
+      <h3>抱歉，未找到匹配的文章!</h3>
+    </div>
   </div>
 </template>
 
@@ -41,7 +45,7 @@ export default {
   props:["list"],
   data() {
     return {
-
+      loadEnd:false
     }
   }
 }
@@ -53,7 +57,7 @@ export default {
   padding: 0px;
 }
 
-.blogs-ul > li {
+.blogs-ul > li,.notBlogs {
   list-style: none;
   margin-bottom: 20px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
@@ -65,7 +69,7 @@ export default {
 
 }
 
-.blogs-ul > li:hover {
+.blogs-ul > li:hover,.notBlogs:hover {
   transform: scale(1.004);
   animation-name: mouse-in-blog;
   animation-duration: 0.1s;
