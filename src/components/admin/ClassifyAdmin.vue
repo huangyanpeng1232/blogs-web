@@ -7,8 +7,8 @@
           <table class="classify-tab">
             <thead>
             <tr class="title-tr">
-              <th style="width: 8%">序号</th>
-              <th style="width: 30%">标题</th>
+              <th>序号</th>
+              <th>标题</th>
               <th>创建时间</th>
               <th>颜色</th>
               <th>推荐</th>
@@ -20,7 +20,7 @@
               <td>{{ classify.id }}</td>
               <td>
                 <span v-show="!classify.edit">{{ classify.name }}</span>
-                <input v-show="classify.edit" type="text" class="form-control edit-classify-input"
+                <input v-show="classify.edit" type="text" :id="'classify_in_'+classify.id" class="form-control edit-classify-input"
                        :value="classify.name" placeholder="请填写分类名称">
               </td>
               <td style="cursor: default">{{ classify.insert_time | dateTimeFormat }}</td>
@@ -114,6 +114,7 @@ export default {
       this.updateClassify(classify)
     },
     updateClassify(classify) {
+      classify.name = $('#classify_in_'+classify.id).val()
       this.$axios.post('/classify/updateClassify', classify).then(response => {
         if (response.status == 200 && response.data.status == 'succeed') {
           this.toast('修改成功');
@@ -156,7 +157,7 @@ export default {
 <style scoped>
 .list-title {
   border-radius: 7px 7px 0px 0px;
-  font-size: 18px;
+  font-size: 20px;
   cursor: default;
 }
 .colorBox{
@@ -169,7 +170,6 @@ export default {
 
 .classify-tab {
   width: 100%;
-  border-radius: 10px;
   margin-top: 15px;
 }
 
@@ -196,7 +196,7 @@ export default {
 }
 
 .btns .iconfont {
-  margin: 0 4px;
+  margin: 0 3px;
   font-size: 20px;
   color: #888;
   cursor: pointer;
@@ -206,7 +206,7 @@ export default {
 
 .btns .iconfont:hover {
   color: #111;
-  background-color: #e7e7e7;
+  background-color: #dcdcdc;
 }
 .title-tr{
   cursor: default;

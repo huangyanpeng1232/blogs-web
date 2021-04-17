@@ -7,8 +7,8 @@
           <table class="tag-tab">
             <thead>
             <tr class="title-tr">
-              <th style="width: 8%">序号</th>
-              <th style="width: 30%">标题</th>
+              <th>序号</th>
+              <th>标题</th>
               <th>创建时间</th>
               <th>颜色</th>
               <th>推荐</th>
@@ -20,7 +20,7 @@
               <td>{{ tag.id }}</td>
               <td>
                 <span v-show="!tag.edit">{{ tag.name }}</span>
-                <input v-show="tag.edit" type="text" class="form-control edit-tag-input"
+                <input v-show="tag.edit" :id="'tag_in_'+tag.id" type="text" class="form-control edit-tag-input"
                        :value="tag.name" placeholder="请填写分类名称">
               </td>
               <td style="cursor: default">{{ tag.insert_time | dateTimeFormat }}</td>
@@ -114,6 +114,7 @@ export default {
       this.updateTag(tag)
     },
     updateTag(tag) {
+      tag.name = $('#tag_in_'+tag.id).val()
       this.$axios.post('/tag/updateTag', tag).then(response => {
         if (response.status == 200 && response.data.status == 'succeed') {
           this.toast('修改成功');
@@ -156,7 +157,7 @@ export default {
 <style scoped>
 .list-title {
   border-radius: 7px 7px 0px 0px;
-  font-size: 18px;
+  font-size: 20px;
   cursor: default;
 }
 .colorBox{
@@ -169,7 +170,6 @@ export default {
 
 .tag-tab {
   width: 100%;
-  border-radius: 10px;
   margin-top: 15px;
 }
 
@@ -196,7 +196,7 @@ export default {
 }
 
 .btns .iconfont {
-  margin: 0 4px;
+  margin: 0 3px;
   font-size: 20px;
   color: #888;
   cursor: pointer;
@@ -206,7 +206,7 @@ export default {
 
 .btns .iconfont:hover {
   color: #111;
-  background-color: #e7e7e7;
+  background-color: #dcdcdc;
 }
 .title-tr{
   cursor: default;

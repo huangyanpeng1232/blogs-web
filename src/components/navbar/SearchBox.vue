@@ -1,16 +1,14 @@
 <template>
   <div id="SearchBox" >
     <div class="search-div" :class="{searchFocus:search.focus,searchBlur:!search.focus}">
-      <span class="iconfont icon-search"></span>
+      <span style="width: 10%" class="iconfont icon-search"></span>
       <input type="text" v-model="search.inText" @keydown="searchInputKeydown($event)" @keyup="searchText()" @focus="search.focus = true;searchText()" @blur="inputBlur()"  class="search-input" >
     </div>
     <ul class="menu-search-result-ul" id="searchResultUl" v-show="search.resultShow" >
       <template v-for="result in search.result">
-        <router-link :key="result.id" :to="{ name: 'search', params: { searchText: result.content}}">
-          <li>
+          <li :key="result.id" @click="toBlog(result.content)">
             {{result.content}}
           </li>
-        </router-link>
       </template>
       <li v-show="search.result.length == 0">
         未找到匹配文章
@@ -34,6 +32,10 @@ export default {
     }
   },
   methods:{
+    toBlog(content){
+      this.search.inText = content
+      this.$router.push({ name: 'search', params: { searchText: content}})
+    },
     searchInputKeydown(e){
       if (e.keyCode == 13) {
         this.$router.push({name: 'search', params: { searchText: this.search.inText}})
@@ -102,6 +104,7 @@ export default {
   font-size: 16px;
   color: #666;
   padding: 0px 5px;
+  width: 90%;
 }
 
 .searchFocus{

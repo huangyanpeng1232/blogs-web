@@ -5,21 +5,24 @@
       <li style="float: left" class="title">
         <router-link to="/">
             <span class="title" >
-              个人博客
+              浩瀚学者
             </span>
         </router-link>
       </li>
-      <li style="float:right;" class="menu-btn color1">
-          <router-link :to="{name:'add'}">
-            <span class="iconfont icon-edit-blogs"></span>
-            <span>创作</span>
-          </router-link>
+      <li style="float: left" class="title hidden-xs">
+        <Weather></Weather>
       </li>
       <li style="float:right;" class="menu-btn color1 hidden">
         <div >
           <span class="iconfont icon-icon-time"></span>
           <span>时间线</span>
         </div>
+      </li>
+      <li style="float:right;" class="menu-btn color1 hidden-sm hidden-xs">
+        <router-link :to="'/'" style="outline: none">
+          <span class="iconfont icon-home"></span>
+          <span>首页</span>
+        </router-link>
       </li>
       <li style="float:right;" class="menu-btn color1 hidden-xs" @mouseenter="tagListShow = true" @mouseleave="tagListShow = false">
         <div>
@@ -54,9 +57,9 @@
           </template>
         </ul>
       </li>
-      <li style="float:right;" class="menu-btn color1" @mouseenter="adminListShow = true" @mouseleave="adminListShow = false">
+      <li style="float:right;" class="menu-btn color1" @click="adminClick()" @mouseenter="adminSys()" @mouseleave="adminListShow = false">
         <div>
-          <span class="iconfont icon-menu"></span>
+          <span class="iconfont icon-tianchongxing-"></span>
           <span>管理</span>
           <span class="menu-btn-down"></span>
         </div>
@@ -76,14 +79,14 @@
               标签管理
             </li>
           </router-link>
+          <router-link :to="{name:'add'}">
+            <li class="color1">
+              新增文章
+            </li>
+          </router-link>
         </ul>
       </li>
-      <li style="float:right;" class="menu-btn color1 hidden-sm hidden-xs">
-        <router-link :to="'/'" style="outline: none">
-          <span class="iconfont icon-home"></span>
-          <span>首页</span>
-        </router-link>
-      </li>
+
       <li style="float:right;" class="col-xs-12 col-md-3">
         <SearchBox></SearchBox>
       </li>
@@ -95,21 +98,35 @@
 
 <script>
 
-
 import SearchBox from "@/components/navbar/SearchBox";
+import Weather from "@/components/navbar/Weather";
 export default {
   name: "Navbar",
-  components: {SearchBox},
+  components: {Weather, SearchBox},
   data(){
     return {
       classifyList:[],
       classifyListShow:false,
       tagList:[],
       tagListShow:false,
-      adminListShow:false
+      adminListShow:false,
+      verify:false
     }
   },
   methods:{
+    adminClick(){
+      if(!this.verify){
+        let inpass = prompt('请输入密码');
+        if(inpass == '246811'){
+          this.verify = true;
+        }
+      }
+    },
+    adminSys(){
+      if(this.verify) {
+        this.adminListShow = true;
+      }
+    },
     loadClassify(){
       this.$axios.post('/classify/getActiveClassify').then(response => {
         if(response.status == 200 && response.data.status == 'succeed'){
@@ -184,10 +201,9 @@ export default {
 
 .title{
   margin: 0px;
-  font-weight: bold;
-  font-size: 19px;
+  font-size: 35px;
   position: relative;
-  top: 2px;
+  top: -3px;
   color: #444;
 }
 .title a{

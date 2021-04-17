@@ -6,11 +6,11 @@
           <div class="title">
               <span>{{ item.title }}</span>
           </div>
+          <hr class="title-hr">
+          <div class="content">
+            <span>{{ item.description }}</span>
+          </div>
         </router-link>
-        <hr class="title-hr">
-        <div class="content">
-          <span>{{ item.description }}</span>
-        </div>
         <hr class="content-hr">
         <div class="info">
           <span class="iconfont icon-icon-time blogTime">

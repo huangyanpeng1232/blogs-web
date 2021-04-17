@@ -3,12 +3,12 @@
     <div class="container blogsAdmin">
       <div class="row">
         <div class="blogs-div">
-          <div class="list-title color1">博客列表</div>
+          <div class="list-title color1">文章列表</div>
           <table class="blogs-tab">
             <thead>
             <tr class="title-tr">
-              <th style="width: 8%">序号</th>
-              <th style="width: 30%">标题</th>
+              <th>序号</th>
+              <th>标题</th>
               <th>创建时间</th>
               <th>修改时间</th>
               <th>分类</th>
@@ -177,13 +177,12 @@ export default {
 <style scoped>
 .list-title {
   border-radius: 7px 7px 0px 0px;
-  font-size: 18px;
+  font-size: 20px;
   cursor: default;
 }
 
 .blogs-tab {
   width: 100%;
-  border-radius: 10px;
   margin-top: 15px;
 }
 
@@ -196,6 +195,7 @@ export default {
 .blogs-tab th {
   border-bottom: 2px solid #ccc;
   padding: 8px 5px;
+  color: #555;
 }
 
 .blogs-tab tr td {
@@ -210,7 +210,7 @@ export default {
 }
 
 .btns .iconfont {
-  margin: 0 4px;
+  margin: 0 3px;
   font-size: 20px;
   color: #888;
   cursor: pointer;
@@ -220,7 +220,7 @@ export default {
 
 .btns .iconfont:hover {
   color: #111;
-  background-color: #e7e7e7;
+  background-color: #dcdcdc;
 }
 .btns a{
   text-decoration: none;
