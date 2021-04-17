@@ -95,7 +95,7 @@ export default {
           this.alert(response.data.status);
         }
       }).catch(e => {
-        this.alert('系统错误:' + e,'错误');
+        this.alert('系统错误18:' + e,'错误');
       })
     },
     selectColor(classify){
@@ -121,7 +121,7 @@ export default {
           this.alert(response.data.status);
         }
       }).catch(e => {
-        this.alert('系统错误:' + e,'错误');
+        this.alert('系统错误17:' + e,'错误');
       })
     },
     affirmDeleteClassify(classify) {
@@ -137,7 +137,7 @@ export default {
           this.alert(response.data.status);
         }
       }).catch(e => {
-        this.alert('系统错误:' + e,'错误');
+        this.alert('系统错误16:' + e,'错误');
       })
       for (let i = 0; i < this.dataList.length; i++) {
         if (this.dataList[i].id == this.affirmClassify.id) {

@@ -4,31 +4,35 @@ import 'jquery'
 import 'jquery-ui'
 import 'bootstrap3/dist/css/bootstrap.min.css'
 import 'bootstrap3/dist/js/bootstrap.min'
-import axios from 'axios'
+
 import router from './router.js'
 import '@/assets/icons/iconfont.css'
 
 
+// 弹框组件
 import alert from '@/assets/js/alert' //这里引入的是js文件
-
 Vue.prototype.alert = alert;
 
 
-
-
+// makerdown 编辑器及高亮支持
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
-
 Vue.use(mavonEditor)
 
 
+// 后端地址配置
+import axios from 'axios'
 
-// axios.defaults.baseURL='http://47.94.251.61:8080'
-axios.defaults.baseURL='http://127.0.0.1:8080'
+
+if (process.env.NODE_ENV === "development") {
+  axios.defaults.baseURL='http://127.0.0.1:8080'
+}else {
+  axios.defaults.baseURL='http://47.94.251.61:8080'
+}
+
 Vue.prototype.$axios = axios
 
-Vue.config.productionTip = false
-
+// vue 时间转换格式配置
 Vue.filter('dateTimeFormat',function(originVal){
   const dt = new Date(originVal)
   //年的时间
@@ -45,7 +49,19 @@ Vue.filter('dateTimeFormat',function(originVal){
   const ss = (dt.getSeconds()+'').padStart(2,'0')
   return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
 })
+Vue.filter('dateFormat',function(originVal){
+  const dt = new Date(originVal)
+  //年的时间
+  const y = dt.getFullYear()
+  //月的时间  .padStart 不足两位自动补0  2位长度
+  const m = (dt.getMonth() + 1 + '').padStart(2,'0')
+  //日的时间
+  const d = (dt.getDate() + '').padStart(2,'0')
 
+  return `${y}-${m}-${d}`
+})
+
+// 消息提醒
 Vue.prototype.toast = function(msg){
   let duration = 1000;
   let div = document.createElement('div');
@@ -65,21 +81,9 @@ Vue.prototype.toast = function(msg){
   }, duration);
 }
 
-Vue.filter('dateFormat',function(originVal){
-  const dt = new Date(originVal)
-  //年的时间
-  const y = dt.getFullYear()
-  //月的时间  .padStart 不足两位自动补0  2位长度
-  const m = (dt.getMonth() + 1 + '').padStart(2,'0')
-  //日的时间
-  const d = (dt.getDate() + '').padStart(2,'0')
 
-  return `${y}-${m}-${d}`
-})
-
-
-
-
+// vue 环境配置
+Vue.config.productionTip = false
 new Vue({
   router,
   render: h => h(App),

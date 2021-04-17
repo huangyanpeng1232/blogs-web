@@ -15,13 +15,13 @@
             <span>创作</span>
           </router-link>
       </li>
-      <li style="float:right;" class="menu-btn color2 color1">
+      <li style="float:right;" class="menu-btn color1 hidden">
         <div >
           <span class="iconfont icon-icon-time"></span>
           <span>时间线</span>
         </div>
       </li>
-      <li style="float:right;" class="menu-btn color2 color1" @mouseenter="tagListShow = true" @mouseleave="tagListShow = false">
+      <li style="float:right;" class="menu-btn color1 hidden-xs" @mouseenter="tagListShow = true" @mouseleave="tagListShow = false">
         <div>
           <span class="iconfont icon-tag"></span>
           <span>标签</span>
@@ -30,14 +30,14 @@
         <ul class="menu-children-ul" v-show="tagListShow">
           <template v-for="item in tagList">
             <router-link :key="item.id" :to="{ name: 'tag', params: { tagId: item.id}}">
-              <li class="color2">
+              <li class="color1">
                   {{item.name}}
               </li>
             </router-link>
           </template>
         </ul>
       </li>
-      <li style="float:right;" class="menu-btn color2 color1" @mouseenter="classifyListShow = true" @mouseleave="classifyListShow = false">
+      <li style="float:right;" class="menu-btn color2 color1 hidden-xs" @mouseenter="classifyListShow = true" @mouseleave="classifyListShow = false">
         <div>
           <span class="iconfont icon-menu"></span>
           <span>分类</span>
@@ -47,14 +47,14 @@
 
           <template v-for="item in classifyList" >
             <router-link :key="item.id" :to="{ name: 'classify', params: { classifyId: item.id}}">
-            <li class="color2">
+            <li class="color1">
                 {{item.name}}
             </li>
             </router-link>
           </template>
         </ul>
       </li>
-      <li style="float:right;" class="menu-btn color2 color1" @mouseenter="adminListShow = true" @mouseleave="adminListShow = false">
+      <li style="float:right;" class="menu-btn color1" @mouseenter="adminListShow = true" @mouseleave="adminListShow = false">
         <div>
           <span class="iconfont icon-menu"></span>
           <span>管理</span>
@@ -78,13 +78,13 @@
           </router-link>
         </ul>
       </li>
-      <li style="float:right;" class="menu-btn color1">
-        <router-link :to="'/'">
+      <li style="float:right;" class="menu-btn color1 hidden-sm hidden-xs">
+        <router-link :to="'/'" style="outline: none">
           <span class="iconfont icon-home"></span>
           <span>首页</span>
         </router-link>
       </li>
-      <li style="float:right;">
+      <li style="float:right;" class="col-xs-12 col-md-3">
         <SearchBox></SearchBox>
       </li>
     </ul>
@@ -118,7 +118,7 @@ export default {
           this.alert(response.data.status);
         }
       }).catch(e =>{
-        this.alert('系统错误:'+e,'错误');
+        this.alert('系统错误5:'+e,'错误');
       })
     },
     loadTag(){
@@ -129,7 +129,7 @@ export default {
           this.alert(response.data.status);
         }
       }).catch(e =>{
-        this.alert('系统错误:'+e,'错误');
+        this.alert('系统错误4:'+e,'错误');
       })
     }
 

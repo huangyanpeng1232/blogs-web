@@ -58,7 +58,7 @@ export default {
     },
     loadData() {
       this.index++;
-      this.$axios.post('/blogs/getBlogs', {'index': this.index}).then(response => {
+      this.$axios.post('/blogs/getBlogs', {'index': this.index,'status':'1'}).then(response => {
         if (response.status == 200 && response.data.status == 'succeed') {
           for (let i = 0; i < response.data.blogs.length; i++) {
             this.dataList.push(response.data.blogs[i])
@@ -73,7 +73,7 @@ export default {
           this.loading = false;
         }
       }).catch(e => {
-        this.alert('系统错误:' + e,'错误');
+        this.alert('系统错误8:' + e,'错误');
       })
     }
   }

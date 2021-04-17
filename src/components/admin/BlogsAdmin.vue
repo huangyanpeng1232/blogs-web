@@ -31,8 +31,16 @@
               <td>
                 {{blog.classify}}
               </td>
-              <td>
-                {{blog.tag}}
+              <td style="text-align:center;">
+                <ul class="tags-ul">
+                  <template v-for="tag in blog.tags">
+                    <router-link :key="tag.id" :to="{ name: 'tag', params: { tagId: tag.id}}">
+                      <li :style="{'background-color':tag.color}">
+                        {{ tag.name }}
+                      </li>
+                    </router-link>
+                  </template>
+                </ul>
               </td>
 
               <td class="btns">
@@ -45,6 +53,8 @@
                 </router-link>
 
                 <span class="iconfont icon-delete" @click="affirmDeleteBlog(blog)"></span>
+                <span class="iconfont icon-show1" title="显示文章" v-show="blog.status == '2'" @click="showBlog(blog)"></span>
+                <span class="iconfont icon-hide" title="隐藏文章" v-show="blog.status == '1'" @click="hideBlog(blog)"></span>
               </td>
             </tr>
             </tbody>
@@ -108,6 +118,30 @@ export default {
           this.loading = false;
         }
       }).catch(e => {
+        this.alert('系统错误20:' + e,'错误');
+      })
+    },
+    showBlog(blog){
+      blog.status = 1
+      this.$axios.post('/blogs/showHideBlog', {'id':blog.id,'status':'1'}).then(response => {
+        if (response.status == 200 && response.data.status == 'succeed') {
+          this.toast('操作成功');
+        } else {
+          this.alert(response.data.status);
+        }
+      }).catch(e => {
+        this.alert('系统错误:' + e,'错误');
+      })
+    },
+    hideBlog(blog){
+      blog.status = 2
+      this.$axios.post('/blogs/showHideBlog', {'id':blog.id,'status':'2'}).then(response => {
+        if (response.status == 200 && response.data.status == 'succeed') {
+          this.toast('操作成功');
+        } else {
+          this.alert(response.data.status);
+        }
+      }).catch(e => {
         this.alert('系统错误:' + e,'错误');
       })
     },
@@ -124,7 +158,7 @@ export default {
           this.alert(response.data.status);
         }
       }).catch(e => {
-        this.alert('系统错误:' + e,'错误');
+        this.alert('系统错误19:' + e,'错误');
       })
       for (let i = 0; i < this.dataList.length; i++) {
         if (this.dataList[i].id == this.affirmBlog.id) {
@@ -197,5 +231,23 @@ export default {
 }
 .blogs-tab tbody tr:hover{
   background-color: #f6f6f6;
+}
+.tags-ul{
+  padding-left: 0px;
+  width: available;
+  display: inline-block;
+}
+.tags-ul li{
+  padding: 5px 8px;
+  list-style: none;
+  float: left;
+  transition: all 0.1s ease 0s;
+  margin: 5px;
+  color: white;
+  border-radius: 4px;
+  display: inline;
+}
+.tags-ul li:hover{
+  transform: scale(1.04)
 }
 </style>

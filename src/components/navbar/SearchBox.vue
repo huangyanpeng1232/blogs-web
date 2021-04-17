@@ -76,7 +76,7 @@ export default {
           this.alert(response.data.status);
         }
       }).catch(e =>{
-        this.alert('系统错误:'+e,'错误');
+        this.alert('系统错误3:'+e,'错误');
       })
     }
   }
@@ -88,7 +88,9 @@ export default {
   border: 1px solid #eaecef;
   padding: 4px 8px;
   border-radius: 4px;
+  margin: 0 auto;
   margin-top: -5px;
+  width: 220px;
   transition: all 0.15s ease 0s;
 }
 .search-div:hover{

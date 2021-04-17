@@ -55,7 +55,7 @@ export default {
           this.alert(response.data.status);
         }
       }).catch(e =>{
-        this.alert('系统错误:'+e);
+        this.alert('系统错误11:'+e,'错误');
       })
     }
   },
@@ -70,7 +70,7 @@ export default {
       this.$refs.saveAlert.save(value,render)
     },
     change:function(value,render){
-      console.log(render)
+
     },
     imgAdd:function(name,file){
 
@@ -86,7 +86,7 @@ export default {
           this.alert(response.data.status);
         }
       }).catch(e =>{
-        this.alert('系统错误:'+e);
+        this.alert('系统错误10:'+e,'错误');
       })
     },
     imgDel:function(name){

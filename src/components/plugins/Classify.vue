@@ -33,7 +33,7 @@ export default {
           this.alert(response.data.status);
         }
       }).catch(e =>{
-        this.alert('系统错误:'+e,'错误');
+        this.alert('系统错误2:'+e,'错误');
       })
     }
   },

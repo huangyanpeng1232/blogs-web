@@ -95,7 +95,7 @@ export default {
           this.alert(response.data.status);
         }
       }).catch(e => {
-        this.alert('系统错误:' + e,'错误');
+        this.alert('系统错误15:' + e,'错误');
       })
     },
     selectColor(tag){
@@ -121,7 +121,7 @@ export default {
           this.alert(response.data.status);
         }
       }).catch(e => {
-        this.alert('系统错误:' + e,'错误');
+        this.alert('系统错误14:' + e,'错误');
       })
     },
     affirmDeleteTag(tag) {
@@ -137,7 +137,7 @@ export default {
           this.alert(response.data.status);
         }
       }).catch(e => {
-        this.alert('系统错误:' + e,'错误');
+        this.alert('系统错误13:' + e,'错误');
       })
       for (let i = 0; i < this.dataList.length; i++) {
         if (this.dataList[i].id == this.affirmTag.id) {

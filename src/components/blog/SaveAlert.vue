@@ -84,6 +84,9 @@ export default {
       $('#save-alert-div').modal('show');
     },
     addTag(){
+      if(this.blog.tags == null){
+        this.blog.tags = [];
+      }
       this.blog.tags.push({name:this.addTagText})
       this.addTagText = '';
       this.addTagIng = false;
@@ -128,7 +131,7 @@ export default {
         }
       }).catch(e =>{
         $('#save-alert-div').modal('hide');
-        this.alert('系统错误:'+e);
+        this.alert('系统错误9:'+e,'错误');
       })
     }
   }

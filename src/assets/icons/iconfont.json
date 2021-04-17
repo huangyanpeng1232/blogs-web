@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1030072",
+      "name": "hide",
+      "font_class": "hide",
+      "unicode": "e76b",
+      "unicode_decimal": 59243
+    },
+    {
+      "icon_id": "5315767",
+      "name": "show",
+      "font_class": "show1",
+      "unicode": "e760",
+      "unicode_decimal": 59232
+    },
+    {
       "icon_id": "386336",
       "name": "勾",
       "font_class": "gou",
