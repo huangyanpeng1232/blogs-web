@@ -90,7 +90,6 @@ export default {
   border: 1px solid #eaecef;
   padding: 4px 8px;
   border-radius: 4px;
-  margin: 0 auto;
   margin-top: -5px;
   width: 220px;
   transition: all 0.15s ease 0s;

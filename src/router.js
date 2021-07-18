@@ -23,52 +23,82 @@ const routes = [
             {
                 name:'/',
                 path:"/",
-                component: Home
+                component: Home,
+                meta: {
+                    title: '浩瀚学者'
+                }
             },
             {
                 name:'search',
                 path:"/search/:searchText",
-                component: SearchList
+                component: SearchList,
+                meta: {
+                    title: '浩瀚学者-搜索结果'
+                }
             },
             {
                 name:'blog',
                 path:"/blog/:blogId",
-                component: BlogIndex
+                component: BlogIndex,
+                meta: {
+                    title: '浩瀚学者-文章'
+                }
             },
             {
                 name:'edit',
                 path:"/edit/:blogId",
-                component: EditBlog
+                component: EditBlog,
+                meta: {
+                    title: '浩瀚学者-编辑'
+                }
             },
             {
                 name:'classify',
                 path:"/classify/:classifyId",
-                component: Classify
+                component: Classify,
+                meta: {
+                    title: '浩瀚学者-分类'
+                }
             },
             {
                 name:'tag',
                 path:"/tag/:tagId",
-                component: Tag
+                component: Tag,
+                meta: {
+                    title: '浩瀚学者-标签'
+                }
             },
             {
                 name:'add',
                 path:"/add",
-                component: EditBlog
+                component: EditBlog,
+                meta: {
+                    title: '浩瀚学者-创作'
+                }
             },
             {
                 name:'TagAdmin',
                 path:"/TagAdmin",
-                component: TagAdmin
+                component: TagAdmin,
+                meta: {
+                    title: '浩瀚学者-标签管理'
+                }
             },
             {
                 name:'BlogsAdmin',
                 path:"/BlogsAdmin",
-                component: BlogsAdmin
+                component: BlogsAdmin,
+                meta: {
+                    title: '浩瀚学者-文章管理'
+                }
             },
             {
                 name:'ClassifyAdmin',
                 path:"/ClassifyAdmin",
-                component: ClassifyAdmin
+                component: ClassifyAdmin,
+                meta: {
+                    title: '浩瀚学者-分类管理'
+                }
             }
         ]
     }

@@ -15,6 +15,14 @@ module.exports = {
         host: '0.0.0.0',
         port: 80,
         open: true
+    },
+    chainWebpack: config => {
+        config
+            .plugin('html')
+            .tap(args => {
+                args[0].title = '浩瀚学者'
+                return args
+            })
     }
 }
 

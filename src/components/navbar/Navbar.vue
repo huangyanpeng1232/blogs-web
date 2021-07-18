@@ -18,7 +18,7 @@
           <span>时间线</span>
         </div>
       </li>
-      <li style="float:right;" class="menu-btn color1 hidden-sm hidden-xs">
+      <li style="float:right;" class="menu-btn color1">
         <router-link :to="'/'" style="outline: none">
           <span class="iconfont icon-home"></span>
           <span>首页</span>
@@ -117,10 +117,19 @@ export default {
     adminClick(){
       if(!this.verify){
         let inpass = prompt('请输入密码');
-        if(inpass == '246811'){
-          this.verify = true;
-        }
+        this.verifyPassword(inpass);
       }
+    },
+    verifyPassword(inpass){
+      let this_ = this;
+      this.$axios.post('/user/login',{'password':inpass}).then(response => {
+        if(response.status == 200 && response.data.status == 'succeed'){
+          this_.verify = true;
+          $.cookie('password', inpass, { expires: 7 });
+        }
+      }).catch(e =>{
+        this.alert('系统错误50:'+e,'错误');
+      })
     },
     adminSys(){
       if(this.verify) {
@@ -154,6 +163,11 @@ export default {
   created:function(){
     this.loadClassify();
     this.loadTag();
+
+    let inpass = $.cookie('password')
+    if(inpass != undefined && inpass != ''){
+      this.verifyPassword(inpass);
+    }
   }
 }
 </script>

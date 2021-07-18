@@ -13,6 +13,7 @@
     "core-js": "^3.6.5",
     "jquery": "^2.2.3",
     "jquery-ui": "^1.12.1",
+    "jquery.cookie": "^1.4.1",
     "less-loader": "^8.0.0",
     "mavon-editor": "^2.9.1",
     "vue": "^2.6.11",

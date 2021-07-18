@@ -3,14 +3,17 @@
 <!--    <div id="backImg"></div>-->
     <router-view></router-view>
     <BgAnimation></BgAnimation>
+    <ICP></ICP>
   </div>
 </template>
 <script>
 import BgAnimation from "@/components/background/BgAnimate";
+import ICP from "@/components/plugins/ICP";
 
 export default {
   name: 'App',
   components: {
+    ICP,
     BgAnimation
   },
   mounted() {

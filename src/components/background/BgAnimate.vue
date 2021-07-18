@@ -480,11 +480,11 @@ canvas {
   display: block;
 }
 .waves {
-  position: absolute;
-  left: 2px;
-  top: 0;
-  right: 0;
+  position: fixed;
   bottom: 0;
+  left: 0px;
+  right: 0px;
+  top: 0px;
   z-index: -1;
 }
 </style>

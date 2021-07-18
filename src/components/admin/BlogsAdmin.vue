@@ -45,16 +45,18 @@
 
               <td class="btns">
                 <router-link :to="{ path: '/blog/'+blog.id,}">
-                  <span class="iconfont icon-show"></span>
+                  <span class="iconfont icon-show" title="查看文章"></span>
                 </router-link>
 
                 <router-link :to="{ path: '/edit/'+blog.id,}">
-                  <span @click="blog.edit = true" class="iconfont icon-edit-blogs"></span>
+                  <span @click="blog.edit = true" title="编辑文章" class="iconfont icon-edit-blogs"></span>
                 </router-link>
 
-                <span class="iconfont icon-delete" @click="affirmDeleteBlog(blog)"></span>
-                <span class="iconfont icon-show1" title="显示文章" v-show="blog.status == '2'" @click="showBlog(blog)"></span>
+                <span class="iconfont icon-delete" title="删除文章" @click="affirmDeleteBlog(blog)"></span>
+                <span class="iconfont icon-show1" title="取消隐藏" v-show="blog.status == '2'" @click="showBlog(blog)"></span>
                 <span class="iconfont icon-hide" title="隐藏文章" v-show="blog.status == '1'" @click="hideBlog(blog)"></span>
+                <span class="iconfont icon-zhiding" title="置顶" v-show="blog.top == '0'" @click="topBlog(blog)"></span>
+                <span class="iconfont icon-quxiaozhiding" title="取消置顶" v-show="blog.top != '0'" @click="topBlog(blog)"></span>
               </td>
             </tr>
             </tbody>
@@ -119,6 +121,25 @@ export default {
         }
       }).catch(e => {
         this.alert('系统错误20:' + e,'错误');
+      })
+    },
+    topBlog(blog){
+      let req = {'id':blog.id};
+      if(blog.top == 0){
+        req.top = 'max'
+        blog.top = 1;
+      }else{
+        req.top = 'min'
+        blog.top = 0;
+      }
+      this.$axios.post('/blogs/topBlog', req).then(response => {
+        if (response.status == 200 && response.data.status == 'succeed') {
+          this.toast('置顶成功');
+        } else {
+          this.alert(response.data.status);
+        }
+      }).catch(e => {
+        this.alert('系统错误:' + e,'错误');
       })
     },
     showBlog(blog){

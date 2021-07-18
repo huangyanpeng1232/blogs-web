@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "6495089",
+      "name": "置顶",
+      "font_class": "zhiding",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "9438977",
+      "name": "取消置顶",
+      "font_class": "quxiaozhiding",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
       "icon_id": "6446348",
       "name": "管理",
       "font_class": "tianchongxing-",

@@ -2,37 +2,42 @@ import Vue from 'vue'
 import App from './App.vue'
 import 'jquery'
 import 'jquery-ui'
+import 'jquery.cookie'
 import 'bootstrap3/dist/css/bootstrap.min.css'
 import 'bootstrap3/dist/js/bootstrap.min'
 
+// 路由组件
 import router from './router.js'
-import '@/assets/icons/iconfont.css'
+router.beforeEach((to, from, next) => {
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
+  next()
+})
 
+import '@/assets/icons/iconfont.css'
 
 // 弹框组件
 import alert from '@/assets/js/alert' //这里引入的是js文件
 Vue.prototype.alert = alert;
 
-
-// makerdown 编辑器及高亮支持
+// makerdown 编辑器及高亮支持组件
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 Vue.use(mavonEditor)
 
 
-// 后端地址配置
+// 异步请求组件
 import axios from 'axios'
-
 
 if (process.env.NODE_ENV === "development") {
   axios.defaults.baseURL='http://127.0.0.1:8080'
 }else {
-  axios.defaults.baseURL='http://47.94.251.61:8080'
+  axios.defaults.baseURL='http://47.94.251.61:3018'
 }
-
 Vue.prototype.$axios = axios
 
-// vue 时间转换格式配置
+// vue 时间转换格式组件
 Vue.filter('dateTimeFormat',function(originVal){
   const dt = new Date(originVal)
   //年的时间
@@ -61,7 +66,7 @@ Vue.filter('dateFormat',function(originVal){
   return `${y}-${m}-${d}`
 })
 
-// 消息提醒
+// 消息提醒组件
 Vue.prototype.toast = function(msg){
   let duration = 1000;
   let div = document.createElement('div');
@@ -80,7 +85,6 @@ Vue.prototype.toast = function(msg){
     }, d * 1000);
   }, duration);
 }
-
 
 // vue 环境配置
 Vue.config.productionTip = false
